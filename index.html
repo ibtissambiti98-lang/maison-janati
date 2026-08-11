@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Janati Création | Haute Couture</title>
+    <title>Maison Janati | Haute Couture Marocaine</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -33,7 +33,7 @@
         .page.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* HERO SECTION WITH VIDEO BACKGROUND */
+        /* HERO SECTION */
         .hero {
             position: relative;
             height: 85vh;
@@ -74,15 +74,21 @@
         .sec-subtitle { text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 40px; }
 
         /* GRID & CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card { background: var(--bg-card); border: 1px solid var(--border-gold); padding: 15px; border-radius: 8px; transition: 0.4s; position: relative; overflow: hidden; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 10px; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between; }
         .card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(212,175,55,0.15); }
-        .card img { width: 100%; height: 380px; object-fit: cover; border-radius: 6px; transition: 0.5s; }
+        .card img { width: 100%; height: 380px; object-fit: cover; transition: 0.5s; }
         .card:hover img { transform: scale(1.03); }
-        .card h3 { color: var(--gold-light); margin: 15px 0 8px 0; font-size: 1.3rem; }
-        .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
+        .card-content { padding: 20px; }
+        .card h3 { color: var(--gold-light); margin-bottom: 10px; font-size: 1.3rem; }
         
-        .card-btn { display: inline-block; width: 100%; text-align: center; background: transparent; border: 1px solid var(--gold); color: var(--gold-light); padding: 10px; border-radius: 4px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .specs { border-top: 1px solid var(--border-gold); padding-top: 12px; margin-top: 12px; font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); }
+        .spec-item { margin-bottom: 5px; }
+        .spec-label { color: var(--gold); font-weight: bold; }
+        .designer-note { background: rgba(212, 175, 55, 0.05); padding: 10px; border-radius: 5px; border-right: 3px solid var(--gold); font-style: italic; margin-top: 10px; font-size: 0.85rem; color: var(--text-light); }
+        [dir="ltr"] .designer-note { border-right: none; border-left: 3px solid var(--gold); }
+
+        .card-btn { display: block; width: 100%; text-align: center; background: transparent; border: 1px solid var(--gold); color: var(--gold-light); padding: 10px; border-radius: 4px; text-decoration: none; font-weight: bold; transition: 0.3s; margin-top: 15px; }
         .card-btn:hover { background: var(--gold); color: #0a0a0e; }
 
         /* ABOUT SECTION */
@@ -90,7 +96,7 @@
         @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
         .about-text h2 { color: var(--gold); font-size: 2.2rem; margin-bottom: 20px; }
         .about-text p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.9; margin-bottom: 15px; }
-        .about-img img { width: 100%; height: 400px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-gold); }
+        .about-img img { width: 280px; height: 280px; object-fit: cover; border-radius: 50%; border: 3px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
 
         /* CONTACT FORM */
         .contact-container { max-width: 600px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: 10px; border: 1px solid var(--border-gold); }
@@ -98,11 +104,6 @@
         .form-group label { display: block; color: var(--gold); margin-bottom: 8px; font-weight: bold; }
         .form-group input, .form-group textarea { width: 100%; padding: 12px; background: #0a0a0e; border: 1px solid #332f42; color: #fff; border-radius: 6px; font-family: inherit; }
         .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); outline: none; }
-
-        /* ADMIN PANEL */
-        #admin-panel { position: fixed; bottom: 25px; left: 25px; z-index: 9999; }
-        .admin-btn { background: var(--gold); color: #0a0a0e; border: none; padding: 12px 20px; border-radius: 30px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 20px rgba(0,0,0,0.6); transition: 0.3s; }
-        .admin-btn:hover { background: var(--gold-light); transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -123,7 +124,7 @@
         </div>
     </nav>
 
-    <!-- 1. HOME PAGE (فيديو الواجهة كأولوية قصوى) -->
+    <!-- 1. HOME PAGE -->
     <div id="page-home" class="page active">
         <div class="hero">
             <video autoplay muted loop playsinline class="bg-video">
@@ -138,10 +139,10 @@
         </div>
     </div>
 
-    <!-- 2. CATALOG PAGE (الـ 21 صورة بتسميات لاتينية صحيحة caftan1 إلى caftan21 والمواد الخام) -->
+    <!-- 2. CATALOG PAGE -->
     <div id="page-catalog" class="page">
         <h2 class="sec-title" id="t-cat-title">التشكيلة الملكية وإبداع الأنامل الذهبية</h2>
-        <p class="sec-subtitle" id="t-cat-desc">نخدم بأفضل ما كاين: أناقة الأحجار الكريمة، ثياب العقيق، والخيوط الأصلية المطرزة بعناية المعلم.</p>
+        <p class="sec-subtitle" id="t-cat-desc">إشراف مباشر من بشرى جناتي وتنسيق دقيق مع كبار المعلمين التقليديين.</p>
         
         <div class="grid" id="catalog-grid"></div>
     </div>
@@ -149,13 +150,14 @@
     <!-- 3. ABOUT PAGE -->
     <div id="page-about" class="page">
         <div class="about-grid">
-            <div class="about-text">
-                <h2 id="t-about-heading">إرث الأنامل الذهبية بدار Maison Janati</h2>
-                <p id="t-about-p1">نؤمن في دارنا بأن القفطان المغربي ليس مجرد لباس، بل هو حكاية فخر وتاريخ يعبر عن هوية المرأة الراقية. كل قطعة تستغرق أسابيع من العمل اليدوي الدقيق باستخدام أجود أنواع الثياب، الخيوط الحريرية، والأحجار الفاخرة.</p>
-                <p id="t-about-p2">نحرص على تقديم تصاميم هُوت كوتُور مميزة تلامس تطلعاتكن في أرقى المناسبات والأعراس.</p>
+            <div class="about-img" style="text-align: center;">
+                <img src="bouchra_photo.jpg" alt="بشرى جناتي">
+                <p style="color:var(--gold); font-weight:bold; margin-top:15px; font-size:1.3rem;" id="t-about-name">بشرى جناتي</p>
             </div>
-            <div class="about-img">
-                <img src="caftan1.jpg" alt="Maison Janati" onerror="this.src='https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80'">
+            <div class="about-text">
+                <h2 id="t-about-heading">حين يصبح الشغف إرثاً حياً</h2>
+                <p id="t-about-p1">"في دارنا، لا نكتفي بخياطة القفطان، بل نحيكُ ذكرياتٍ وقصصاً من التراث المغربي الأصيل. ولدت وترعرعت وسط أهازيج آلات الخياطة ورائحة الأثواب الفاخرة، حيث كان الشغف بالأزياء جزءاً من هويتي منذ طفولتي."</p>
+                <p id="t-about-p2">تطور هذا الحب ليصبح مشروعاً فنياً يجمع بين دقة المعلم التقليدي ولمسة الـ Haute Couture المعاصرة. نعمل برفقة فريق من الحرفيين المهرة لنضمن أن تكون كل قطعة تحفة فنية فريدة.</p>
             </div>
         </div>
     </div>
@@ -182,36 +184,37 @@
         </div>
     </div>
 
-    <!-- ADMIN PANEL -->
-    <div id="admin-panel">
-        <button class="admin-btn" onclick="toggleAdminMode()">⚙️ وضع التعديل (Admin)</button>
-    </div>
-
     <script>
-        // تعريف الـ 21 منتج بتسميات صور لاتينية صحيحة (caftan1.jpg إلى caftan21.jpg) مع خامات الثواب والأحجار بدون أسعار
         const itemsData = [
-            { id: 1, img: "caftan1.jpg", ar: {title: "القفطان الملكي الأصيل", desc: "أناقة الأحجار الكريمة العالية الجودة مع طرز المعلم الحر."}, fr: {title: "Caftan Royal Authentique", desc: "Élégance des pierres précieuses et broderie Maalem."}, en: {title: "Royal Authentic Caftan", desc: "High-quality gemstone elegance with master embroidery."}},
-            { id: 2, img: "caftan2.jpg", ar: {title: "قفطان العقيق الفاخر", desc: "مصنوع من أجود الثياب المطرزة بخيوط الصقلي العريقة."}, fr: {title: "Caftan Akik de Luxe", desc: "Confectionné dans les meilleurs tissus brodés."}, en: {title: "Luxury Akik Caftan", desc: "Crafted from finest fabrics embroidered with traditional threads."}},
-            { id: 3, img: "caftan3.jpg", ar: {title: "تحفة الأنامل الذهبية", desc: "إبداع يدوي متقن يعكس أصالة القفطان المغربي الرفيع."}, fr: {title: "Chef-d'œuvre Mains d'Or", desc: "Création artisanale raffinée reflétant l'authenticité."}, en: {title: "Golden Hands Masterpiece", desc: "Exquisite handmade creation reflecting Moroccan heritage."}},
-            { id: 4, img: "caftan4.jpg", ar: {title: "ثوب العقيق والخيوط الحريرية", desc: "خامات عالية الجودة تضمن لونا ساحرا وبريقا خاطفا."}, fr: {title: "Tissu Akik & Soie", desc: "Matériaux de haute qualité garantissant éclat et charme."}, en: {title: "Akik Fabric & Silk Threads", desc: "Top quality materials ensuring unique charm and brilliance."}},
-            { id: 5, img: "caftan5.jpg", ar: {title: "قفطان العروس الماسي", desc: "مرصع بأحجار كريمة منقى بعناية فائقة لأرقى المناسبات."}, fr: {title: "Caftan Mariée Diamant", desc: "Orné de pierres précieuses sélectionnées pour vos événements."}, en: {title: "Diamond Bride Caftan", desc: "Adorned with carefully selected gemstones for grand events."}},
-            { id: 6, img: "caftan6.jpg", ar: {title: "تطريزات السفيفة التقليدية", desc: "شغل يدوي خالص يعبر عن دقة الصنعة المغربية الأصيلة."}, fr: {title: "Broderie Sfifa Traditionnelle", desc: "Travail 100% fait main exprimant la précision de l'art."}, en: {title: "Traditional Sfifa Embroidery", desc: "100% handmade work expressing precise craftsmanship."}},
-            { id: 7, img: "caftan7.jpg", ar: {title: "قفطان المخمل الملكي", desc: "قماش مخملي فاخر ينساب برقة مع تطريز ذهبي خالص."}, fr: {title: "Caftan Velours Royal", desc: "Tissu velours somptueux épousant une broderie d'or."}, en: {title: "Royal Velvet Caftan", desc: "Sumptuous velvet fabric gracefully paired with pure gold."}},
-            { id: 8, img: "caftan8.jpg", ar: {title: "مادة الخام: خيوط الصقلي الحرة", desc: "نستخدم أفضل أنواع الخيوط الذهبية والفضية المعالجة بدقة."}, fr: {title: "Matière Première: Fils Skalli", desc: "Nous utilisons les meilleurs fils d'or et d'argent."}, en: {title: "Raw Material: Pure Skalli Threads", desc: "We use the finest refined gold and silver threads."}},
-            { id: 9, img: "caftan9.jpg", ar: {title: "قفطان زفير الأزرق الفاخر", desc: "تصميم ملكي مستوحى من صفاء الجواهر والتقاليد العريقة."}, fr: {title: "Caftan Saphir Luxueux", desc: "Design royal inspiré de la pureté des pierres précieuses."}, en: {title: "Luxurious Sapphire Caftan", desc: "Royal design inspired by the purity of precious gems."}},
-            { id: 10, img: "caftan10.jpg", ar: {title: "لمسات الأحجار الكريمة", desc: "تنسيق هندسي فني للأحجار يعزز فخامة الموديل."}, fr: {title: "Touches de Pierres Précieuses", desc: "Agencement artistique de pierres rehaussant la splendeur."}, en: {title: "Gemstone Touches", desc: "Artistic gemstone arrangement enhancing overall splendor."}},
-            { id: 11, img: "caftan11.jpg", ar: {title: "قفطان العقيق الرمادي الراقي", desc: "مزيج فريد من الألوان الهادئة والتطريز الكلاسيكي البديع."}, fr: {title: "Caftan Akik Gris Élégant", desc: "Mélange unique de teintes douces et broderie classique."}, en: {title: "Elegant Grey Akik Caftan", desc: "Unique blend of soft tones and exquisite classical embroidery."}},
-            { id: 12, img: "caftan12.jpg", ar: {title: "خامات ثوب الموبرة الحرة", desc: "نعومة فائقة تمنح القفطان هيبة وحضوراً لا نظير له."}, fr: {title: "Matière Moobrah Douce", desc: "Douceur suprême conférant prestance et présence inouïe."}, en: {title: "Pure Moobrah Fabric", desc: "Supreme softness giving the caftan unmatched prestige."}},
-            { id: 13, img: "caftan13.jpg", ar: {title: "قفطان الزمرد الأخضر", desc: "إشراقة ساحرة مستوحاة من أعماق الطبيعة والأصالة المغربية."}, fr: {title: "Caftan Émeraude Vert", desc: "Éclat enchanteur inspiré des profondeurs de la nature."}, en: {title: "Green Emerald Caftan", desc: "Enchanting radiance inspired by Moroccan nature and heritage."}},
-            { id: 14, img: "caftan14.jpg", ar: {title: "تفاصيل العقاد والضفيرة", desc: "إتقان يدوي عالٍ يعكس حرفية المعلم الصانع بامتياز."}, fr: {title: "Détails Akad & Dfira", desc: "Finition artisanale hautement qualifiée et maîtrisée."}, en: {title: "Akad & Dfira Details", desc: "Highly skilled and mastered traditional handmade finishing."}},
-            { id: 15, img: "caftan15.jpg", ar: {title: "قفطان ياقوت الأحمر الملكي", desc: "رمز الفخامة والجاذبية في كل مناسبة وأمسية راقية."}, fr: {title: "Caftan Rubis Royal", desc: "Symbole de luxe et de charme pour vos soirées."}, en: {title: "Royal Ruby Caftan", desc: "Symbol of luxury and charm for your exceptional evenings."}},
-            { id: 16, img: "caftan16.jpg", ar: {title: "المادة الخام: حرير طبيعي خالص", desc: "أقمشة مختارة بعناية لتلائم ذوق المرأة المتميزة."}, fr: {title: "Matière: Soie Naturelle Pure", desc: "Tissus sélectionnés avec soin pour la femme distinguée."}, en: {title: "Material: Pure Natural Silk", desc: "Carefully selected fabrics for the distinguished woman."}},
-            { id: 17, img: "caftan17.jpg", ar: {title: "قفطان التاج الذهبي", desc: "تصميم فخم يعكس الهيبة والأنوثة في آن واحد."}, fr: {title: "Caftan Couronne d'Or", desc: "Design somptueux reflétant prestance et féminité."}, en: {title: "Golden Crown Caftan", desc: "Sumptuous design reflecting prestige and absolute femininity."}},
-            { id: 18, img: "caftan18.jpg", ar: {title: "إبداع الخرز اللامع", desc: "تطريز يدوي دقيق يبرز جمال وبريق الثوب."}, fr: {title: "Création Perles Brillantes", desc: "Broderie manuelle précise mettant en valeur l'éclat."}, en: {title: "Bright Bead Creation", desc: "Precise manual embroidery highlighting the fabric's brilliance."}},
-            { id: 19, img: "caftan19.jpg", ar: {title: "قفطان اللؤلؤ الأبيض", desc: "نقاء وأناقة مفرطة خاصة بالعروس والأميرات."}, fr: {title: "Caftan Perles Blanches", desc: "Pureté et élégance suprême dédiées aux mariées."}, en: {title: "White Pearl Caftan", desc: "Supreme purity and elegance dedicated to brides and princesses."}},
-            { id: 20, img: "caftan20.jpg", ar: {title: "صنعة الأنامل العريقة", desc: "خبرة سنوات طويلة متوارثة لخدمة الأناقة المغربية."}, fr: {title: "Savoir-faire Ancestral", desc: "Des années d'expérience transmises pour l'élégance."}, en: {title: "Ancestral Craftsmanship", desc: "Years of passed-down experience serving Moroccan elegance."}},
-            { id: 21, img: "caftan21.jpg", ar: {title: "تحفة Maison Janati الختامية", desc: "درة التشكيلة، تجمع خلاصة الفخامة والأحجار الكريمة.", fr: {title: "Chef-d'œuvre Maison Janati", desc: "Le summum du luxe et des pierres précieuses."}, en: {title: "Maison Janati Masterpiece", desc: "The pinnacle of luxury and gemstones in our collection."}}
+            { 
+                img: "caftan1.jpg", 
+                ar: { title: "القفطان الملكي الأصيل", desc: "أناقة الأحجار الكريمة مع طرز المعلم الحر.", material: "ثوب الموبرة الحرة مع خيوط الصقلي الأصلي.", craft: "عمل يدوي متقن من كبار المعلمين التقليديين.", details: "ترصيع يدوي بأحجار كريمة مع سفيفة مشبكة.", note: "تقول بشرى: 'اخترت له اللون الأحمر المخملي لأنه يعبر عن القوة والأنوثة، مع تطريز ذهبي كالملوك.'" },
+                fr: { title: "Caftan Royal Authentique", desc: "Élégance des pierres précieuses et broderie Maalem.", material: "Velours pur avec fils Skalli dorés.", craft: "Travail manuel minutieux de maîtres artisans.", details: "Broderie de pierres et sfifa traditionnelle.", note: "Bushra: 'J'ai choisi le velours rouge pour sa prestance et sa force royale.'" },
+                en: { title: "Royal Authentic Caftan", desc: "Gemstone elegance with master embroidery.", material: "Pure velvet with original Skalli threads.", craft: "Meticulous handmade work by master artisans.", details: "Gemstone embellishments and traditional sfifa.", note: "Bushra: 'I chose rich red velvet to reflect absolute prestige and elegance.'" }
+            },
+            { 
+                img: "caftan2.jpg", 
+                ar: { title: "قفطان العقيق الفاخر", desc: "تصميم ملكي خاص مطرز بالفضة الخالصة.", material: "حرير طبيعي 100% مستورد بعناية.", craft: "تطريز يدوي دقيق 'بالتنبات' استغرق أسابيع.", details: "تداخل لوني بديع يجمع الأصالة والحداثة.", note: "تقول بشرى: 'أردت بياضاً نقياً ببريق خفيف كقطرات الندى ليناسب ليلة العمر.'" },
+                fr: { title: "Caftan Akik de Luxe", desc: "Design royal brodé d'argent pur.", material: "Soie naturelle 100% importée.", craft: "Broderie manuelle 'Tanatb' de plusieurs semaines.", details: "Harmonie unique entre tradition et modernité.", note: "Bushra: 'Je voulais un blanc pur et lumineux pour un éclat inoubliable.'" },
+                en: { title: "Luxury Akik Caftan", desc: "Royal design embroidered with pure silver.", material: "100% imported natural silk.", craft: "Weeks of delicate handmade 'Tanatb' embroidery.", details: "Unique harmony blending heritage and modernity.", note: "Bushra: 'I wanted pristine white with a gentle dew-like shimmer for brides.'" }
+            },
+            { 
+                img: "caftan3.jpg", 
+                ar: { title: "تحفة الأنامل الذهبية", desc: "إبداع يدوي متقن يعكس أصالة القفطان المغربي.", material: "ثوب الملكي الفاخر مع خيوط حريرية.", craft: "شغل يدوي خالص بإشراف مباشر من بشرى.", details: "عقاد تقليدي متقن مع أحجار لامعة.", note: "تقول بشرى: 'هذه القطعة صممت خصيصاً لمن تبحث عن التفرد المطلق والذوق الرفيع.'" },
+                fr: { title: "Chef-d'œuvre Mains d'Or", desc: "Création artisanale raffinée.", material: "Tissu royal de premier choix.", craft: "Fait main sous la supervision directe de Bushra.", details: "Akad traditionnel et pierres brillantes.", note: "Bushra: 'Une pièce unique pensée pour les femmes d'exception.'" },
+                en: { title: "Golden Hands Masterpiece", desc: "Exquisite handmade creation.", material: "Premium royal fabric with silk threads.", craft: "Pure handmade work supervised by Bushra.", details: "Traditional Akad and shining gems.", note: "Bushra: 'A masterpiece crafted for those who seek absolute distinction.'" }
+            }
         ];
+
+        // التوليد التلقائي لباقي الصور من 4 إلى 21 لتغطية كامل التشكيلة
+        for(let i = 4; i <= 21; i++) {
+            itemsData.push({
+                img: caftan${i}.jpg,
+                ar: { title: قفطان دار Maison Janati #${i}, desc: "تصميم فاخر يجمع بين عراقة الصنعة المغربية ولمسة الموضة.", material: "أجود أنواع الأثواب الحريرية والموبرة.", craft: "إنجاز حرفي يدوي دقيق 100%.", details: "تطريز متقن وأحجار مختارة بعناية.", note: "تقول بشرى: 'كل قفطان نحيُكه يحمل قصة حب خالصة للتراث المغربي الرفيع.'" },
+                fr: { title: Caftan Maison Janati #${i}, desc: "Design luxueux alliant artisanat et haute couture.", material: "Tissus de soie et velours d'exception.", craft: "Confection 100% artisanale et minutieuse.", details: "Broderie raffinée et pierres sélectionnées.", note: "Bushra: 'Chaque pièce insuffle notre amour profond pour l'art marocain.'" },
+                en: { title: Maison Janati Caftan #${i}, desc: "Luxurious design combining heritage and haute couture.", material: "Finest silk and velvet fabrics.", craft: "100% meticulous handmade craftsmanship.", details: "Refined embroidery and selected gems.", note: "Bushra: 'Every garment we stitch carries our pure love for Moroccan heritage.'" }
+            });
+        }
 
         let currentLang = 'ar';
 
@@ -225,9 +228,20 @@
                 card.className = 'card';
                 card.innerHTML = `
                     <img src="${item.img}" alt="${text.title}" onerror="this.src='https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80'">
-                    <h3>${text.title}</h3>
-                    <p>${text.desc}</p>
-                    <a href="#" onclick="switchPage('contact')" class="card-btn">${lang === 'fr' ? 'Demander ce modèle' : lang === 'en' ? 'Request Model' : 'اطلبي هذا الموديل'}</a>
+                    <div class="card-content">
+                        <h3>${text.title}</h3>
+                        <p>${text.desc}</p>
+                        <div class="specs">
+                            <div class="spec-item"><span class="spec-label">${lang==='fr'?'Matière:':lang==='en'?'Material:':'المواد:'}</span> ${text.material}</div>
+                            <div class="spec-item"><span class="spec-label">${lang==='fr'?'Artisans:':lang==='en'?'Craft:':'الحرفة:'}</span> ${text.craft}</div>
+                            <div class="spec-item"><span class="spec-label">${lang==='fr'?'Détails:':lang==='en'?'Details:':'التفاصيل:'}</span> ${text.details}</div>
+                            <div class="designer-note">
+                                <strong style="color:var(--gold); display:block; margin-bottom:3px;">${lang === 'fr' ? 'La touche de Bushra' : lang === 'en' ? 'Bushra\'s Touch' : 'لمسة بشرى'}:</strong>
+                                ${text.note}
+                            </div>
+                        </div>
+                        <a href="#" onclick="switchPage('contact'); return false;" class="card-btn">${lang === 'fr' ? 'Demander ce modèle' : lang === 'en' ? 'Request Model' : 'اطلبي هذا الموديل'}</a>
+                    </div>
                 `;
                 grid.appendChild(card);
             });
@@ -236,7 +250,9 @@
         function switchPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            document.getElementById('page-' + pageId).classList.add('active');
+            
+            const targetPage = document.getElementById('page-' + pageId);
+            if(targetPage) targetPage.classList.add('active');
             
             if(pageId === 'home') document.getElementById('link-home').classList.add('active');
             if(pageId === 'catalog') document.getElementById('link-catalog').classList.add('active');
@@ -253,10 +269,11 @@
                 hdesc: "حيث تلتقي أصالة التراث المغربي العريق مع أناقة الأحجار الكريمة وعالية الجودة، لنصنع لكنّ تحفاً فنية لا تُنسى.",
                 hbtn: "اكتشفي التشكيلة الحصرية",
                 ctitle: "التشكيلة الملكية وإبداع الأنامل الذهبية",
-                cdesc: "نخدم بأفضل ما كاين: أناقة الأحجار الكريمة، ثياب العقيق، والخيوط الأصلية المطرزة بعناية المعلم.",
-                ahead: "إرث الأنامل الذهبية بدار Maison Janati",
-                ap1: "نؤمن في دارنا بأن القفطان المغربي ليس مجرد لباس، بل هو حكاية فخر وتاريخ يعبر عن هوية المرأة الراقية. كل قطعة تستغرق أسابيع من العمل اليدوي الدقيق باستخدام أجود أنواع الثياب، الخيوط الحريرية، والأحجار الفاخرة.",
-                ap2: "نحرص على تقديم تصاميم هُوت كوتُور مميزة تلامس تطلعاتكن في أرقى المناسبات والأعراس.",
+                cdesc: "إشراف مباشر من بشرى جناتي وتنسيق دقيق مع كبار المعلمين التقليديين.",
+                aname: "بشرى جناتي",
+                ahead: "حين يصبح الشغف إرثاً حياً",
+                ap1: "\"في دارنا، لا نكتفي بخياطة القفطان، بل نحيكُ ذكرياتٍ وقصصاً من التراث المغربي الأصيل. ولدت وترعرعت وسط أهازيج آلات الخياطة ورائحة الأثواب الفاخرة، حيث كان الشغف بالأزياء جزءاً من هويتي منذ طفولتي.\"",
+                ap2: "تطور هذا الحب ليصبح مشروعاً فنياً يجمع بين دقة المعلم التقليدي ولمسة الـ Haute Couture المعاصرة. نعمل برفقة فريق من الحرفيين المهرة لنضمن أن تكون كل قطعة تحفة فنية فريدة.",
                 chead: "طلب تفصيل خاص",
                 csub: "تواصلن معنا لطلب قياسات خاصة أو حجز تصميمك الفريد لدى Maison Janati.",
                 lname: "الاسم الكريم",
@@ -268,37 +285,39 @@
             fr: {
                 home: "Accueil", catalog: "Collection & Art", about: "La Maison", contact: "Sur-mesure",
                 htitle: "L'Excellence du Caftan Marocain",
-                hdesc: "Où l'authenticité du patrimoine marocain rencontre l'élégance des pierres précieuses pour créer des œuvres d'art inoubliables.",
+                hdesc: "Où l'authenticité du patrimoine marocain rencontre l'élégance des pierres précieuses.",
                 hbtn: "Découvrir la Collection",
                 ctitle: "Collection Royale & Mains d'Or",
-                cdesc: "Nous utilisons le meilleur: élégance des pierres précieuses, tissus Akik et fils authentiques brodés par le Maalem.",
-                ahead: "L'Héritage des Mains d'Or chez Maison Janati",
-                ap1: "Nous croyons que le caftan marocain est bien plus qu'un vêtement; c'est une histoire de fierté et d'histoire. Chaque pièce demande des semaines de travail manuel minutieux.",
-                ap2: "Nous veillons à offrir des créations Haute Couture d'exception pour vos plus beaux événements.",
+                cdesc: "Supervision directe de Bushra Janati et collaboration avec les maîtres artisans.",
+                aname: "Bushra Janati",
+                ahead: "Quand la passion devient un héritage",
+                ap1: "\"Dans notre maison, nous ne faisons pas que coudre des caftans, nous tissons des histoires et des souvenirs du patrimoine marocain.\"",
+                ap2: "Cet amour s'est transformé en un projet d'art alliant la précision du Maalem et la Haute Couture. Nous travaillons avec des artisans d'exception pour chaque pièce unique.",
                 chead: "Demande Sur-Mesure",
-                csub: "Contactez-nous pour commander des dimensions spéciales ou réserver votre design unique.",
+                csub: "Contactez-nous pour commander des dimensions spéciales.",
                 lname: "Nom complet",
                 lphone: "Téléphone ou WhatsApp",
-                lmsg: "Détails de la commande ou modèle souhaité",
-                bsubmit: "Confirmer et envoyer la demande",
+                lmsg: "Détails de la commande",
+                bsubmit: "Confirmer et envoyer",
                 dir: "ltr"
             },
             en: {
                 home: "Home", catalog: "Collection & Craft", about: "The House", contact: "Custom Order",
                 htitle: "The Splendor of Moroccan Caftan",
-                hdesc: "Where ancestral Moroccan heritage meets gemstone elegance to craft unforgettable masterpieces.",
+                hdesc: "Where ancestral Moroccan heritage meets gemstone elegance.",
                 hbtn: "Explore Exclusive Collection",
                 ctitle: "Royal Collection & Golden Hands",
-                cdesc: "We work with the finest: gemstone elegance, Akik fabrics, and master-embroidered authentic threads.",
-                ahead: "The Golden Hands Heritage at Maison Janati",
-                ap1: "We believe the Moroccan caftan is a story of pride and history reflecting the elite woman's identity. Every piece takes weeks of meticulous handmade work.",
-                ap2: "We are committed to delivering exceptional Haute Couture designs for your finest occasions.",
+                cdesc: "Direct supervision by Bushra Janati and collaboration with master artisans.",
+                aname: "Bushra Janati",
+                ahead: "When Passion Becomes Living Heritage",
+                ap1: "\"In our house, we don't just sew caftans; we weave memories and stories of authentic Moroccan heritage.\"",
+                ap2: "This love evolved into an art project blending traditional Maalem precision with contemporary Haute Couture.",
                 chead: "Custom Order Request",
-                csub: "Contact us to request custom sizing or reserve your unique design at Maison Janati.",
+                csub: "Contact us to request custom sizing or unique designs.",
                 lname: "Full Name",
                 lphone: "Phone or WhatsApp",
-                lmsg: "Order details or desired model",
-                bsubmit: "Confirm & Send Request",
+                lmsg: "Order details",
+                bsubmit: "Confirm & Send",
                 dir: "ltr"
             }
         };
@@ -320,6 +339,7 @@
             document.getElementById('t-cat-title').innerText = siteTexts[lang].ctitle;
             document.getElementById('t-cat-desc').innerText = siteTexts[lang].cdesc;
             
+            document.getElementById('t-about-name').innerText = siteTexts[lang].aname;
             document.getElementById('t-about-heading').innerText = siteTexts[lang].ahead;
             document.getElementById('t-about-p1').innerText = siteTexts[lang].ap1;
             document.getElementById('t-about-p2').innerText = siteTexts[lang].ap2;
@@ -344,33 +364,7 @@
                 alert(currentLang === 'fr' ? 'Veuillez remplir votre nom et téléphone.' : currentLang === 'en' ? 'Please fill in your name and phone.' : 'المرجو إدخال الاسم ورقم الهاتف على الأقل.');
                 return;
             }
-            alert(currentLang === 'fr' ? 'Merci! Votre demande a été envoyée avec succès.' : currentLang === 'en' ? 'Thank you! Your request has been successfully sent.' : 'شكراً لك! تم إرسال طلبك بنجاح، ستتواصل معك الدار في أقرب وقت.');
-        }
-
-        let isAdmin = false;
-        function toggleAdminMode() {
-            if (!isAdmin) {
-                let pwd = prompt("المرجو إدخال كلمة المرور الخاصة بالتعديل:");
-                if (pwd === "janati2026") {
-                    isAdmin = true;
-                    document.querySelectorAll('h1, h2, h3, p').forEach(el => {
-                        el.contentEditable = "true";
-                        el.style.border = "1px dashed #d4af37";
-                        el.style.padding = "2px";
-                    });
-                    alert("تم تفعيل وضع التعديل بنجاح! يمكنك تغيير أي نص مباشرة في الصفحة.");
-                } else {
-                    alert("كلمة المرور غير صحيحة!");
-                }
-            } else {
-                isAdmin = false;
-                document.querySelectorAll('h1, h2, h3, p').forEach(el => {
-                    el.contentEditable = "false";
-                    el.style.border = "none";
-                    el.style.padding = "0";
-                });
-                alert("تم إيقاف وضع التعديل وحفظ المظهر.");
-            }
+            alert(currentLang === 'fr' ? 'Merci! Votre demande a été envoyée.' : currentLang === 'en' ? 'Thank you! Request sent.' : 'شكراً لك! تم إرسال طلبك بنجاح.');
         }
 
         window.onload = function() {
@@ -379,5 +373,3 @@
     </script>
 </body>
 </html>
-
-
