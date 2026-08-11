@@ -1,6 +1,4 @@
 
-Le message disparaîtra dans 23h
-23h
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -25,16 +23,16 @@ Le message disparaîtra dans 23h
         /* NAVIGATION */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(10,10,14,0.95); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-gold); backdrop-filter: blur(10px); flex-wrap: wrap; gap: 10px; }
         .logo { color: var(--gold); font-size: 1.2rem; letter-spacing: 2px; font-weight: bold; text-transform: uppercase; }
-        .nav-links { display: flex; gap: 15px; list-style: none; flex-wrap: wrap; }
-        .nav-links a { color: var(--text-light); text-decoration: none; cursor: pointer; transition: 0.3s; font-size: 0.95rem; }
+        .nav-links { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; }
+        .nav-links a { color: var(--text-light); text-decoration: none; cursor: pointer; transition: 0.3s; font-size: 1rem; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); text-shadow: 0 0 10px rgba(212,175,55,0.4); }
         
-        .lang-switch button { background: none; border: 1px solid var(--gold); color: var(--gold-light); padding: 3px 8px; cursor: pointer; border-radius: 3px; margin-left: 3px; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
+        .lang-switch { display: flex; gap: 5px; }
+        .lang-switch button { background: none; border: 1px solid var(--gold); color: var(--gold-light); padding: 4px 10px; cursor: pointer; border-radius: 3px; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
         .lang-switch button.active, .lang-switch button:hover { background: var(--gold); color: #0a0a0e; }
 
-        .page { display: none; padding: 110px 5% 60px 5%; min-height: 100vh; animation: fadeIn 0.5s ease; }
+        .page { display: none; padding: 110px 5% 60px 5%; min-height: 100vh; }
         .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* HERO SECTION */
         .hero {
@@ -99,10 +97,10 @@ Le message disparaîtra dans 23h
         .about-img img { width: 220px; height: 220px; object-fit: cover; border-radius: 50%; border: 3px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
 
         /* MATERIALS SECTION */
-        .materials-box { background: var(--bg-card); border: 1px solid var(--border-gold); padding: 20px; border-radius: 8px; margin-top: 30px; }
-        .materials-box h3 { color: var(--gold); margin-bottom: 10px; font-size: 1.2rem; }
-        .materials-list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; }
-        .materials-list li { background: rgba(212,175,55,0.1); border: 1px solid var(--border-gold); padding: 6px 12px; border-radius: 4px; font-size: 0.9rem; color: var(--gold-light); }
+        .materials-box { background: var(--bg-card); border: 1px solid var(--border-gold); padding: 25px; border-radius: 10px; margin-top: 40px; }
+        .materials-box h3 { color: var(--gold); margin-bottom: 15px; font-size: 1.3rem; }
+        .materials-list { display: flex; flex-wrap: wrap; gap: 12px; list-style: none; padding: 0; }
+        .materials-list li { background: rgba(212,175,55,0.1); border: 1px solid var(--border-gold); padding: 8px 15px; border-radius: 5px; font-size: 0.95rem; color: var(--gold-light); }
     </style>
 </head>
 <body>
@@ -146,8 +144,8 @@ Le message disparaîtra dans 23h
     <div id="page-about" class="page">
         <div class="about-grid">
             <div class="about-img" style="text-align: center;">
-                <img src="bouchra_photo.jpg" alt="بشرى جناتي">
-                <p style="color:var(--gold); font-weight:bold; margin-top:10px; font-size:1.1rem;" id="t-about-name">بشرى جناتي</p>
+                <img src="bouchra_photo.jpg" alt="بشرى جناتي" onerror="this.src='https://via.placeholder.com/220'">
+                <p style="color:var(--gold); font-weight:bold; margin-top:12px; font-size:1.1rem;" id="t-about-name">بشرى جناتي</p>
             </div>
             <div class="about-text">
                 <h2 id="t-about-heading">حين يصبح الشغف إرثاً حياً</h2>
@@ -158,24 +156,12 @@ Le message disparaîtra dans 23h
 
         <div class="materials-box">
             <h3 id="t-mat-title">المواد الأولية وتقنيات الطرز التقليدي</h3>
-            <ul class="materials-list" id="materials-container">
-                <!-- يتم تعبئتها تلقائياً حسب اللغة -->
-            </ul>
+            <ul class="materials-list" id="materials-container"></ul>
         </div>
     </div>
 
     <script>
-        // بيانات القفاطين والخامات واللغات الثلاث
-        const itemsData = [];
-        for(let i = 1; i <= 13; i++) {
-            itemsData.push({
-                img: caftan${i}.jpg,
-                ar: { title: القفطان الملكي #${i}, desc: "تصميم فاخر يجمع بين عراقة الصنعة المغربية ولمسة الموضة.", material: "ثوب الموبرة الحرة مع خيوط الصقلي.", craft: "عمل يدوي متقن 100%.", note: "بشرى جناتي: 'تحفة صممت خصيصاً لتمنحكِ إطلالة ملكية فريدة.'" },
-                fr: { title: Caftan Royal #${i}, desc: "Design luxueux alliant artisanat et haute couture.", material: "Velours pur avec fils Skalli.", craft: "Confection 100% artisanale.", note: "Bushra Janati: 'Une pièce d'exception pour un éclat unique.'" },
-                en: { title: Royal Caftan #${i}, desc: "Luxurious design combining heritage and haute couture.", material: "Pure velvet with Skalli threads.", craft: "100% handmade craftsmanship.", note: "Bushra Janati: 'A masterpiece crafted for royal distinction.'" }
-            });
-        }
-
+        // إعدادات النصوص واللغات الثلاث
         const siteTexts = {
             ar: {
                 home: "الرئيسية", catalog: "التشكيلة", about: "عن الدار",
@@ -224,66 +210,93 @@ Le message disparaîtra dans 23h
             }
         };
 
+        // توليد بيانات القفاطين (من 1 إلى 13) باللغات الثلاث
+        const itemsData = [];
+        for(let i = 1; i <= 13; i++) {
+            itemsData.push({
+                img: caftan${i}.jpg,
+                ar: { title: القفطان الملكي #${i}, desc: "تصميم فاخر يجمع بين عراقة الصنعة المغربية ولمسة الموضة.", material: "ثوب الموبرة الحرة مع خيوط الصقلي.", craft: "عمل يدوي متقن 100%.", note: "بشرى جناتي: 'تحفة صممت خصيصاً لتمنحكِ إطلالة ملكية فريدة.'" },
+                fr: { title: Caftan Royal #${i}, desc: "Design luxueux alliant artisanat et haute couture.", material: "Velours pur avec fils Skalli.", craft: "Confection 100% artisanale.", note: "Bushra Janati: 'Une pièce d'exception pour un éclat unique.'" },
+                en: { title: Royal Caftan #${i}, desc: "Luxurious design combining heritage and haute couture.", material: "Pure velvet with Skalli threads.", craft: "100% handmade craftsmanship.", note: "Bushra Janati: 'A masterpiece crafted for royal distinction.'" }
+            });
+        }
+
+        let currentLang = 'ar';
+
+        // دالة تغيير اللغة وترجمة الموقع بالكامل
         function setLang(lang) {
-            document.documentElement.dir = siteTexts[lang].dir;
+            currentLang = lang;
+            const t = siteTexts[lang];
+
+            document.documentElement.dir = t.dir;
             document.documentElement.lang = lang;
 
-            document.getElementById('link-home').innerText = siteTexts[lang].home;
-            document.getElementById('link-catalog').innerText = siteTexts[lang].catalog;
-            document.getElementById('link-about').innerText = siteTexts[lang].about;
+            document.getElementById('link-home').innerText = t.home;
+            document.getElementById('link-catalog').innerText = t.catalog;
+            document.getElementById('link-about').innerText = t.about;
             
-            document.getElementById('t-h-title').innerText = siteTexts[lang].htitle;
-            document.getElementById('t-h-desc').innerText = siteTexts[lang].hdesc;
-            document.getElementById('t-h-btn').innerText = siteTexts[lang].hbtn;
+            document.getElementById('t-h-title').innerText = t.htitle;
+            document.getElementById('t-h-desc').innerText = t.hdesc;
+            document.getElementById('t-h-btn').innerText = t.hbtn;
             
-            document.getElementById('t-cat-title').innerText = siteTexts[lang].ctitle;
-            document.getElementById('t-cat-desc').innerText = siteTexts[lang].cdesc;
+            document.getElementById('t-cat-title').innerText = t.ctitle;
+            document.getElementById('t-cat-desc').innerText = t.cdesc;
             
-            document.getElementById('t-about-name').innerText = siteTexts[lang].aname;
-            document.getElementById('t-about-heading').innerText = siteTexts[lang].ahead;
-            document.getElementById('t-about-p1').innerText = siteTexts[lang].ap1;
-            document.getElementById('t-about-p2').innerText = siteTexts[lang].ap2;
+            document.getElementById('t-about-name').innerText = t.aname;
+            document.getElementById('t-about-heading').innerText = t.ahead;
+            document.getElementById('t-about-p1').innerText = t.ap1;
+            document.getElementById('t-about-p2').innerText = t.ap2;
             
-            document.getElementById('t-mat-title').innerText = siteTexts[lang].mattitle;
+            document.getElementById('t-mat-title').innerText = t.mattitle;
 
-            // تعبئة مواد الطرز
+            // تعبئة مواد الطرز والخامات
             const matContainer = document.getElementById('materials-container');
-            matContainer.innerHTML = siteTexts[lang].materials.map(m => <li>${m}</li>).join('');
+            matContainer.innerHTML = t.materials.map(m => <li>${m}</li>).join('');
 
-            // تحديث التشكيلة باللغة المختارة
+            // تحديث عرض التشكيلة باللغة الحالية
+            renderCatalog(lang);
+
+            // تحديث شكل أزرار اللغات النشطة
+            document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+            document.getElementById('b-' + lang).classList.add('active');
+        }
+
+        // دالة توليد وعرض كاردات القفاطين
+        function renderCatalog(lang) {
             const grid = document.getElementById('catalog-grid');
             grid.innerHTML = itemsData.map(item => {
-                const t = item[lang];
+                const itemText = item[lang];
+                const matLabel = lang === 'fr' ? 'Matière:' : lang === 'en' ? 'Material:' : 'المواد:';
+                const craftLabel = lang === 'fr' ? 'Artisans:' : lang === 'en' ? 'Craft:' : 'الحرفة:';
+                
                 return `
                     <div class="card">
-                        <img src="${item.img}?v=${Date.now()}" alt="${t.title}" onerror="this.src='https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80'">
+                        <img src="${item.img}?v=${Date.now()}" alt="${itemText.title}" onerror="this.src='https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80'">
                         <div class="card-content">
-                            <h3>${t.title}</h3>
-                            <p>${t.desc}</p>
+                            <h3>${itemText.title}</h3>
+                            <p>${itemText.desc}</p>
                             <div class="specs">
-                                <div class="spec-item"><span class="spec-label">${lang==='fr'?'Matière:':lang==='en'?'Material:':'المواد:'}</span> ${t.material}</div>
-                                <div class="spec-item"><span class="spec-label">${lang==='fr'?'Artisans:':lang==='en'?'Craft:':'الحرفة:'}</span> ${t.craft}</div>
-                                <div class="designer-note">${t.note}</div>
+                                <div><span class="spec-label">${matLabel}</span> ${itemText.material}</div>
+                                <div><span class="spec-label">${craftLabel}</span> ${itemText.craft}</div>
+                                <div class="designer-note">${itemText.note}</div>
                             </div>
                         </div>
                     </div>
                 `;
             }).join('');
-
-            document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
-            document.getElementById('b-' + lang).classList.add('active');
         }
 
+        // دالة التنقل بين الصفحات
         function switchPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
             
             document.getElementById('page-' + pageId).classList.add('active');
             document.getElementById('link-' + pageId).classList.add('active');
-            window.scrollTo(0,0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // التشغيل التلقائي بالعربية عند فتح الصفحة
+        // التشغيل الأولي عند تحميل الصفحة
         window.onload = function() {
             setLang('ar');
         };
