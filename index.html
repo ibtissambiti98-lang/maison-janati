@@ -8,24 +8,33 @@
         body { font-family: 'Arial', sans-serif; background: #000; color: #fff; overflow: hidden; }
         
         /* الهيدر */
-        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 20px 50px; z-index: 1000; background: rgba(0,0,0,0.6); }
-        .nav-links a { margin: 0 15px; cursor: pointer; color: #d4af37; text-decoration: none; font-weight: bold; }
-        .lang-switch button { cursor: pointer; padding: 5px 12px; margin: 0 5px; background: #d4af37; border: none; border-radius: 4px; color: #000; font-weight: bold; }
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; z-index: 1000; background: rgba(0,0,0,0.7); }
+        .logo { color: #d4af37; font-weight: bold; font-size: 1.2rem; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { cursor: pointer; color: #d4af37; text-decoration: none; font-weight: bold; padding: 5px 10px; border: 1px solid transparent; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { border-color: #d4af37; border-radius: 4px; }
         
-        /* الفيديو والتحكم فيه بالاسم الصحيح janati-bg.mp4 */
+        .lang-switch { display: flex; gap: 5px; }
+        .lang-switch button { cursor: pointer; padding: 5px 12px; background: #d4af37; border: none; border-radius: 4px; color: #000; font-weight: bold; }
+        
+        /* الفيديو والتحكم فيه */
         #video-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
-        #video-control { position: fixed; bottom: 20px; left: 20px; z-index: 1000; padding: 10px; background: rgba(0,0,0,0.7); color: #d4af37; border: 1px solid #d4af37; cursor: pointer; border-radius: 5px; }
+        #video-control { position: fixed; bottom: 20px; left: 20px; z-index: 1000; padding: 10px 15px; background: rgba(0,0,0,0.8); color: #d4af37; border: 1px solid #d4af37; cursor: pointer; border-radius: 5px; font-weight: bold; }
 
         /* الصفحات */
         .page { display: none; height: 100vh; padding-top: 150px; text-align: center; }
-        .page.active { display: block; background: rgba(0,0,0,0.4); }
+        .page.active { display: block; background: rgba(0,0,0,0.5); }
         
-        .materials-box { margin-top: 30px; background: rgba(0,0,0,0.7); padding: 20px; border: 1px solid #d4af37; display: inline-block; border-radius: 10px; }
+        .materials-box { margin-top: 30px; background: rgba(0,0,0,0.8); padding: 25px; border: 1px solid #d4af37; display: inline-block; border-radius: 10px; text-align: right; }
+        [dir="ltr"] .materials-box { text-align: left; }
+        .materials-box ul { margin-top: 10px; padding-right: 20px; }
+        [dir="ltr"] .materials-box ul { padding-right: 0; padding-left: 20px; }
+        .materials-box li { margin-bottom: 5px; color: #f3e5ab; }
     </style>
 </head>
 <body>
 
-    <!-- استخدام الاسم الصحيح الدقيق للملف من الصورة -->
+    <!-- الفيديو بالاسم الصحيح الدقيق -->
     <video id="video-bg" autoplay muted loop>
         <source src="janati-bg.mp4" type="video/mp4">
     </video>
@@ -36,7 +45,7 @@
     <nav>
         <div class="logo">Maison Janati</div>
         <div class="nav-links">
-            <a id="btn-home">الرئيسية</a>
+            <a id="btn-home" class="active">الرئيسية</a>
             <a id="btn-catalog">التشكيلة</a>
             <a id="btn-about">عن الدار</a>
         </div>
@@ -48,63 +57,87 @@
     </nav>
 
     <div id="page-home" class="page active">
-        <h1 id="h1-title">مرحباً في Maison Janati</h1>
+        <h1 id="h1-title" style="color: #d4af37; font-size: 2.5rem;">مرحباً في Maison Janati</h1>
     </div>
 
     <div id="page-catalog" class="page">
-        <h1 id="h1-cat">التشكيلة</h1>
+        <h1 id="h1-cat" style="color: #d4af37; font-size: 2.5rem;">التشكيلة</h1>
     </div>
 
     <div id="page-about" class="page">
-        <h1 id="h1-about">عن الدار</h1>
+        <h1 id="h1-about" style="color: #d4af37; font-size: 2.5rem;">عن الدار</h1>
         <div class="materials-box">
-            <h2 id="h2-mat">المواد الأولية</h2>
+            <h2 id="h2-mat" style="color: #d4af37;">المواد الأولية</h2>
             <ul id="ul-mat"></ul>
         </div>
     </div>
 
     <script>
-        const content = {
-            ar: { home: "الرئيسية", cat: "التشكيلة", about: "عن الدار", h1: "مرحباً في Maison Janati", h1c: "التشكيلة", h1a: "عن الدار", mat: "المواد الأولية", list: ["حرير طبيعي", "خيوط الصقلي", "أحجار كريمة"], vBtn: "إيقاف الفيديو" },
-            fr: { home: "Accueil", cat: "Collection", about: "La Maison", h1: "Bienvenue à Maison Janati", h1c: "Collection", h1a: "La Maison", mat: "Matières Premières", list: ["Soie naturelle", "Fils Skalli", "Pierres précieuses"], vBtn: "Arrêter la vidéo" },
-            en: { home: "Home", cat: "Collection", about: "The House", h1: "Welcome to Maison Janati", h1c: "Collection", h1a: "The House", mat: "Raw Materials", list: ["Natural Silk", "Skalli Threads", "Gemstones"], vBtn: "Stop video" }
-        };
+        // نضع الكود داخل حدث التأكد من تحميل الصفحة بالكامل لضمان عمل الأزرار 100%
+        document.addEventListener("DOMContentLoaded", function() {
+            const content = {
+                ar: { home: "الرئيسية", cat: "التشكيلة", about: "عن الدار", h1: "مرحباً في Maison Janati", h1c: "التشكيلة", h1a: "عن الدار", mat: "المواد الأولية", list: ["حرير طبيعي", "خيوط الصقلي", "أحجار كريمة"], vStop: "إيقاف الفيديو", vPlay: "تشغيل الفيديو" },
+                fr: { home: "Accueil", cat: "Collection", about: "La Maison", h1: "Bienvenue à Maison Janati", h1c: "Collection", h1a: "La Maison", mat: "Matières Premières", list: ["Soie naturelle", "Fils Skalli", "Pierres précieuses"], vStop: "Arrêter la vidéo", vPlay: "Lire la vidéo" },
+                en: { home: "Home", cat: "Collection", about: "The House", h1: "Welcome to Maison Janati", h1c: "Collection", h1a: "The House", mat: "Raw Materials", list: ["Natural Silk", "Skalli Threads", "Gemstones"], vStop: "Stop video", vPlay: "Play video" }
+            };
 
-        function switchPage(id) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-' + id).classList.add('active');
-        }
+            let currentLang = 'ar';
 
-        function setLang(lang) {
-            const t = content[lang];
-            document.getElementById('btn-home').innerText = t.home;
-            document.getElementById('btn-catalog').innerText = t.cat;
-            document.getElementById('btn-about').innerText = t.about;
-            document.getElementById('h1-title').innerText = t.h1;
-            document.getElementById('h1-cat').innerText = t.h1c;
-            document.getElementById('h1-about').innerText = t.h1a;
-            document.getElementById('h2-mat').innerText = t.mat;
-            document.getElementById('video-control').innerText = t.vBtn;
-            document.getElementById('ul-mat').innerHTML = t.list.map(i => <li>${i}</li>).join('');
-            document.documentElement.dir = (lang === 'ar' ? 'rtl' : 'ltr');
-        }
+            function switchPage(id) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+                
+                document.getElementById('page-' + id).classList.add('active');
+                document.getElementById('btn-' + id).classList.add('active');
+            }
 
-        const video = document.getElementById('video-bg');
-        const vBtn = document.getElementById('video-control');
-        vBtn.onclick = () => {
-            if (video.paused) { video.play(); vBtn.innerText = content[document.documentElement.dir === 'rtl' ? (document.documentElement.lang || 'ar') : 'ar'].vBtn === "إيقاف الفيديو" ? "إيقاف الفيديو" : "Stop video"; }
-            else { video.pause(); vBtn.innerText = "تشغيل الفيديو"; }
-        };
+            function setLang(lang) {
+                currentLang = lang;
+                const t = content[lang];
+                document.getElementById('btn-home').innerText = t.home;
+                document.getElementById('btn-catalog').innerText = t.cat;
+                document.getElementById('btn-about').innerText = t.about;
+                document.getElementById('h1-title').innerText = t.h1;
+                document.getElementById('h1-cat').innerText = t.h1c;
+                document.getElementById('h1-about').innerText = t.h1a;
+                document.getElementById('h2-mat').innerText = t.mat;
+                
+                const videoEl = document.getElementById('video-bg');
+                const vBtn = document.getElementById('video-control');
+                vBtn.innerText = videoEl.paused ? t.vPlay : t.vStop;
 
-        document.getElementById('btn-home').onclick = () => switchPage('home');
-        document.getElementById('btn-catalog').onclick = () => switchPage('catalog');
-        document.getElementById('btn-about').onclick = () => switchPage('about');
-        
-        document.getElementById('lang-ar').onclick = () => setLang('ar');
-        document.getElementById('lang-fr').onclick = () => setLang('fr');
-        document.getElementById('lang-en').onclick = () => setLang('en');
+                document.getElementById('ul-mat').innerHTML = t.list.map(i => <li>${i}</li>).join('');
+                document.documentElement.dir = (lang === 'ar' ? 'rtl' : 'ltr');
+                document.documentElement.lang = lang;
+            }
 
-        setLang('ar');
+            // ربط أزرار التنقل
+            document.getElementById('btn-home').onclick = () => switchPage('home');
+            document.getElementById('btn-catalog').onclick = () => switchPage('catalog');
+            document.getElementById('btn-about').onclick = () => switchPage('about');
+            
+            // ربط أزرار اللغات
+            document.getElementById('lang-ar').onclick = () => setLang('ar');
+            document.getElementById('lang-fr').onclick = () => setLang('fr');
+            document.getElementById('lang-en').onclick = () => setLang('en');
+
+            // التحكم في الفيديو
+            const video = document.getElementById('video-bg');
+            const vBtn = document.getElementById('video-control');
+            vBtn.onclick = () => {
+                const t = content[currentLang];
+                if (video.paused) { 
+                    video.play(); 
+                    vBtn.innerText = t.vStop; 
+                } else { 
+                    video.pause(); 
+                    vBtn.innerText = t.vPlay; 
+                }
+            };
+
+            // التشغيل الافتراضي
+            setLang('ar');
+        });
     </script>
 </body>
 </html>
