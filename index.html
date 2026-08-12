@@ -9,7 +9,7 @@
             --gold: #d4af37;
             --gold-light: #f3e5ab;
             --dark-bg: #070709;
-            --card-bg: rgba(18, 18, 24, 0.95);
+            --card-bg: rgba(15, 15, 20, 0.98);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,40 +21,31 @@
             overflow-x: hidden; 
             min-height: 100vh;
         }
-
-        /* خلفية جمالية فاخرة */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
-            z-index: -1;
-        }
         
-        /* الهيدر الفاخر */
+        /* الهيدر الفاخر والثابت بوضوح تام */
         nav { 
-            position: fixed; 
-            top: 0; 
+            position: sticky;
+            top: 0;
             width: 100%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 20px 40px; 
-            z-index: 1000; 
-            background: rgba(7, 7, 9, 0.9); 
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3); 
+            padding: 18px 40px; 
+            z-index: 9999; 
+            background: #0b0b0e; 
+            border-bottom: 2px solid var(--gold); 
+            box-shadow: 0 4px 25px rgba(0,0,0,0.9);
         }
 
         .logo { 
             color: var(--gold); 
             font-weight: bold; 
-            font-size: 1.5rem; 
+            font-size: 1.4rem; 
             letter-spacing: 2px; 
             text-transform: uppercase;
         }
         
-        .nav-links { display: flex; gap: 10px; list-style: none; }
+        .nav-links { display: flex; gap: 12px; list-style: none; }
         
         .nav-btn, .lang-btn { 
             cursor: pointer; 
@@ -63,7 +54,7 @@
             padding: 8px 16px; 
             border: 1px solid var(--gold); 
             border-radius: 6px; 
-            background: transparent; 
+            background: rgba(0,0,0,0.5); 
             font-size: 0.95rem;
             transition: all 0.3s ease;
         }
@@ -72,7 +63,7 @@
         .lang-btn:hover, .lang-btn.active { 
             background: var(--gold); 
             color: var(--dark-bg); 
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
         }
         
         .lang-switch { display: flex; gap: 6px; }
@@ -81,21 +72,21 @@
         /* حاوية الصفحات */
         .page { 
             display: none; 
-            min-height: 100vh; 
-            padding: 140px 20px 60px 20px; 
+            min-height: calc(100vh - 80px); 
+            padding: 50px 20px; 
             text-align: center; 
+            align-items: center; 
+            justify-content: center;
+            flex-direction: column;
         }
         
         .page.active { 
             display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center;
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+            animation: fadeIn 0.5s ease-in-out; 
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -103,18 +94,18 @@
             background: var(--card-bg); 
             padding: 45px; 
             border-radius: 16px; 
-            border: 1px solid rgba(212, 175, 55, 0.4); 
+            border: 1px solid rgba(212, 175, 55, 0.5); 
             max-width: 850px; 
             width: 100%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
         }
 
-        h1 { color: var(--gold); font-size: 2.8rem; margin-bottom: 20px; font-family: serif; }
+        h1 { color: var(--gold); font-size: 2.6rem; margin-bottom: 20px; font-family: serif; }
         p { font-size: 1.2rem; color: #e0e0e0; line-height: 1.8; margin-bottom: 20px; }
 
         /* معرض الفيديو الاحترافي */
         .video-wrapper {
-            margin-top: 25px;
+            margin-top: 20px;
             position: relative;
             width: 100%;
             max-width: 700px;
@@ -137,12 +128,12 @@
         .materials-box { 
             margin-top: 30px; 
             text-align: right; 
-            border-top: 1px solid rgba(212, 175, 55, 0.2); 
+            border-top: 1px solid rgba(212, 175, 55, 0.3); 
             padding-top: 20px; 
         }
         [dir="ltr"] .materials-box { text-align: left; }
         
-        .materials-box h3 { color: var(--gold); font-size: 1.4rem; margin-bottom: 12px; }
+        .materials-box h3 { color: var(--gold); font-size: 1.3rem; margin-bottom: 12px; }
         .materials-box ul { list-style-type: none; padding: 0; }
         .materials-box li { 
             margin-bottom: 10px; 
@@ -157,7 +148,6 @@
             color: var(--gold);
         }
 
-        /* التجاوب مع الشاشات الصغيرة */
         @media (max-width: 768px) {
             nav { padding: 15px 20px; flex-direction: column; gap: 15px; }
             .nav-links { flex-wrap: wrap; justify-content: center; }
@@ -168,7 +158,7 @@
 </head>
 <body>
 
-    <!-- الهيدر الموحد والأزرار التفاعلية -->
+    <!-- الهيدر والازرار ظاهرة وثابتة في أعلى الصفحة بشكل مضمون -->
     <nav>
         <div class="logo">Maison Janati</div>
         <ul class="nav-links">
@@ -184,7 +174,7 @@
         </div>
     </nav>
 
-    <!-- 1. صفحة الرئيسية -->
+    <!-- 1. الرئيسية -->
     <div id="page-home" class="page active">
         <div class="content-box">
             <h1 id="h1-title">مرحباً في Maison Janati</h1>
@@ -192,7 +182,7 @@
         </div>
     </div>
 
-    <!-- 2. صفحة التشكيلة -->
+    <!-- 2. التشكيلة -->
     <div id="page-catalog" class="page">
         <div class="content-box">
             <h1 id="h1-cat">التشكيلة الملكية</h1>
@@ -200,7 +190,7 @@
         </div>
     </div>
 
-    <!-- 3. صفحة فيديو الدار -->
+    <!-- 3. فيديو الدار -->
     <div id="page-video" class="page">
         <div class="content-box">
             <h1 id="h1-vid">عرض الدار المرئي</h1>
@@ -215,7 +205,7 @@
         </div>
     </div>
 
-    <!-- 4. صفحة عن الدار والمواد الأولية -->
+    <!-- 4. عن الدار والمواد الأولية -->
     <div id="page-about" class="page">
         <div class="content-box">
             <h1 id="h1-about">عن الدار</h1>
@@ -228,7 +218,6 @@
         </div>
     </div>
 
-    <!-- المحرك البرمجى المضمون لتشغيل الأزرار واللغات -->
     <script>
         const contentData = {
             ar: { 
@@ -260,11 +249,9 @@
         let currentLanguage = 'ar';
 
         function switchPage(pageId) {
-            // إخفاء كل الصفحات وإزالة التفعيل من أزرار القائمة
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             
-            // إظهار الصفحة المستهدفة وتفعيل الزر الخاص بها
             document.getElementById('page-' + pageId).classList.add('active');
             document.getElementById('btn-' + pageId).classList.add('active');
         }
@@ -273,42 +260,33 @@
             currentLanguage = lang;
             const t = contentData[lang];
             
-            // تحديث النصوص في الهيدر
             document.getElementById('btn-home').innerText = t.home;
             document.getElementById('btn-catalog').innerText = t.cat;
             document.getElementById('btn-video').innerText = t.videoTab;
             document.getElementById('btn-about').innerText = t.about;
             
-            // تحديث محتوى الرئيسية
             document.getElementById('h1-title').innerText = t.h1;
             document.getElementById('p-home-desc').innerText = t.pHome;
             
-            // تحديث محتوى التشكيلة
             document.getElementById('h1-cat').innerText = t.h1c;
             document.getElementById('p-cat-desc').innerText = t.pCat;
 
-            // تحديث محتوى الفيديو
             document.getElementById('h1-vid').innerText = t.h1v;
             document.getElementById('p-vid-desc').innerText = t.pVid;
             
-            // تحديث محتوى عن الدار
             document.getElementById('h1-about').innerText = t.h1a;
             document.getElementById('p-about-desc').innerText = t.pAbout;
             
-            // تحديث المواد الأولية
             document.getElementById('h2-mat').innerText = t.mat;
             document.getElementById('ul-mat').innerHTML = t.list.map(item => <li>${item}</li>).join('');
             
-            // تغيير اتجاه الصفحة ولغتها للغة المناسبة
             document.documentElement.dir = (lang === 'ar' ? 'rtl' : 'ltr');
             document.documentElement.lang = lang;
 
-            // تحديث شكل أزرار اللغات النشطة
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('lang-' + lang).classList.add('active');
         }
 
-        // التهيئة الافتراضية باللغة العربية عند فتح الصفحة
         setLang('ar');
     </script>
 </body>
