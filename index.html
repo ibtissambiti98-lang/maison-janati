@@ -5,80 +5,117 @@
     <title>Maison Janati | Zinith</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Arial', sans-serif; background: #000; color: #fff; overflow: hidden; }
+        body { font-family: 'Arial', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
         
-        /* الهيدر */
-        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; z-index: 1000; background: rgba(0,0,0,0.7); }
-        .logo { color: #d4af37; font-weight: bold; font-size: 1.2rem; }
-        .nav-links { display: flex; gap: 15px; }
-        .nav-links a { cursor: pointer; color: #d4af37; text-decoration: none; font-weight: bold; padding: 5px 10px; border: 1px solid transparent; transition: 0.3s; }
-        .nav-links a:hover, .nav-links a.active { border-color: #d4af37; border-radius: 4px; }
+        /* الفيديو في الخلفية مع منع اعتراض النقرات */
+        #video-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; pointer-events: none; }
+        
+        /* زر التحكم في الفيديو */
+        #video-control { position: fixed; bottom: 20px; left: 20px; z-index: 10000; padding: 10px 15px; background: rgba(0,0,0,0.8); color: #d4af37; border: 1px solid #d4af37; cursor: pointer; border-radius: 5px; font-weight: bold; }
+
+        /* الهيدر والأزرار في المقدمة القصوى لضمان الاستجابة */
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; z-index: 9999; background: rgba(0,0,0,0.85); border-bottom: 1px solid #d4af37; }
+        .logo { color: #d4af37; font-weight: bold; font-size: 1.3rem; }
+        
+        .nav-links { display: flex; gap: 15px; list-style: none; }
+        .nav-links a { cursor: pointer; color: #d4af37; text-decoration: none; font-weight: bold; padding: 8px 15px; border: 1px solid #d4af37; border-radius: 4px; transition: 0.3s; background: rgba(0,0,0,0.5); }
+        .nav-links a:hover, .nav-links a.active { background: #d4af37; color: #000; }
         
         .lang-switch { display: flex; gap: 5px; }
-        .lang-switch button { cursor: pointer; padding: 5px 12px; background: #d4af37; border: none; border-radius: 4px; color: #000; font-weight: bold; }
-        
-        /* الفيديو والتحكم فيه */
-        #video-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
-        #video-control { position: fixed; bottom: 20px; left: 20px; z-index: 1000; padding: 10px 15px; background: rgba(0,0,0,0.8); color: #d4af37; border: 1px solid #d4af37; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        .lang-switch button { cursor: pointer; padding: 8px 15px; background: rgba(0,0,0,0.5); border: 1px solid #d4af37; border-radius: 4px; color: #d4af37; font-weight: bold; transition: 0.3s; }
+        .lang-switch button:hover, .lang-switch button.active { background: #d4af37; color: #000; }
 
         /* الصفحات */
-        .page { display: none; height: 100vh; padding-top: 150px; text-align: center; }
-        .page.active { display: block; background: rgba(0,0,0,0.5); }
+        .page { display: none; height: 100vh; padding-top: 150px; text-align: center; position: relative; z-index: 10; pointer-events: auto; }
+        .page.active { display: block; }
         
-        .materials-box { margin-top: 30px; background: rgba(0,0,0,0.8); padding: 25px; border: 1px solid #d4af37; display: inline-block; border-radius: 10px; text-align: right; }
+        .content-box { background: rgba(0,0,0,0.75); padding: 30px; border-radius: 10px; display: inline-block; border: 1px solid #d4af37; max-width: 700px; margin-top: 20px; }
+        .materials-box { margin-top: 20px; text-align: right; }
         [dir="ltr"] .materials-box { text-align: left; }
         .materials-box ul { margin-top: 10px; padding-right: 20px; }
         [dir="ltr"] .materials-box ul { padding-right: 0; padding-left: 20px; }
-        .materials-box li { margin-bottom: 5px; color: #f3e5ab; }
+        .materials-box li { margin-bottom: 5px; color: #f3e5ab; font-size: 1.1rem; }
     </style>
 </head>
 <body>
 
-    <!-- الفيديو بالاسم الصحيح الدقيق -->
+    <!-- الفيديو بالاسم الصحيح تماماً -->
     <video id="video-bg" autoplay muted loop>
         <source src="janati-bg.mp4" type="video/mp4">
     </video>
 
-    <!-- زر التحكم في الفيديو -->
     <button id="video-control">إيقاف الفيديو</button>
 
     <nav>
         <div class="logo">Maison Janati</div>
-        <div class="nav-links">
-            <a id="btn-home" class="active">الرئيسية</a>
-            <a id="btn-catalog">التشكيلة</a>
-            <a id="btn-about">عن الدار</a>
-        </div>
+        <ul class="nav-links">
+            <li><a id="btn-home" class="active">الرئيسية</a></li>
+            <li><a id="btn-catalog">التشكيلة</a></li>
+            <li><a id="btn-about">عن الدار</a></li>
+        </ul>
         <div class="lang-switch">
-            <button id="lang-ar">AR</button>
+            <button id="lang-ar" class="active">AR</button>
             <button id="lang-fr">FR</button>
             <button id="lang-en">EN</button>
         </div>
     </nav>
 
+    <!-- الرئيسية -->
     <div id="page-home" class="page active">
-        <h1 id="h1-title" style="color: #d4af37; font-size: 2.5rem;">مرحباً في Maison Janati</h1>
+        <div class="content-box">
+            <h1 id="h1-title" style="color: #d4af37; font-size: 2.5rem; margin-bottom: 15px;">مرحباً في Maison Janati</h1>
+            <p id="p-home-desc" style="font-size: 1.2rem; color: #f0eee6;">فخامة القفطان المغربي الأصيل وحيث يلتقي التراث مع الإبداع.</p>
+        </div>
     </div>
 
+    <!-- التشكيلة -->
     <div id="page-catalog" class="page">
-        <h1 id="h1-cat" style="color: #d4af37; font-size: 2.5rem;">التشكيلة</h1>
+        <div class="content-box">
+            <h1 id="h1-cat" style="color: #d4af37; font-size: 2.5rem; margin-bottom: 15px;">التشكيلة</h1>
+            <p id="p-cat-desc" style="font-size: 1.2rem; color: #f0eee6;">استعرضي أحدث التصاميم الملكية الحصرية.</p>
+        </div>
     </div>
 
+    <!-- عن الدار -->
     <div id="page-about" class="page">
-        <h1 id="h1-about" style="color: #d4af37; font-size: 2.5rem;">عن الدار</h1>
-        <div class="materials-box">
-            <h2 id="h2-mat" style="color: #d4af37;">المواد الأولية</h2>
-            <ul id="ul-mat"></ul>
+        <div class="content-box">
+            <h1 id="h1-about" style="color: #d4af37; font-size: 2.5rem; margin-bottom: 15px;">عن الدار</h1>
+            <p id="p-about-desc" style="font-size: 1.1rem; color: #f0eee6; line-height: 1.6;">رحلة شغف وإتقان في تفصيل أرقى الأزياء التقليدية.</p>
+            
+            <div class="materials-box">
+                <h3 id="h2-mat" style="color: #d4af37; font-size: 1.3rem;">المواد الأولية</h3>
+                <ul id="ul-mat"></ul>
+            </div>
         </div>
     </div>
 
     <script>
-        // نضع الكود داخل حدث التأكد من تحميل الصفحة بالكامل لضمان عمل الأزرار 100%
         document.addEventListener("DOMContentLoaded", function() {
             const content = {
-                ar: { home: "الرئيسية", cat: "التشكيلة", about: "عن الدار", h1: "مرحباً في Maison Janati", h1c: "التشكيلة", h1a: "عن الدار", mat: "المواد الأولية", list: ["حرير طبيعي", "خيوط الصقلي", "أحجار كريمة"], vStop: "إيقاف الفيديو", vPlay: "تشغيل الفيديو" },
-                fr: { home: "Accueil", cat: "Collection", about: "La Maison", h1: "Bienvenue à Maison Janati", h1c: "Collection", h1a: "La Maison", mat: "Matières Premières", list: ["Soie naturelle", "Fils Skalli", "Pierres précieuses"], vStop: "Arrêter la vidéo", vPlay: "Lire la vidéo" },
-                en: { home: "Home", cat: "Collection", about: "The House", h1: "Welcome to Maison Janati", h1c: "Collection", h1a: "The House", mat: "Raw Materials", list: ["Natural Silk", "Skalli Threads", "Gemstones"], vStop: "Stop video", vPlay: "Play video" }
+                ar: { 
+                    home: "الرئيسية", cat: "التشكيلة", about: "عن الدار", 
+                    h1: "مرحباً في Maison Janati", pHome: "فخامة القفطان المغربي الأصيل وحيث يلتقي التراث مع الإبداع.",
+                    h1c: "التشكيلة", pCat: "استعرضي أحدث التصاميم الملكية الحصرية.",
+                    h1a: "عن الدار", pAbout: "رحلة شغف وإتقان في تفصيل أرقى الأزياء التقليدية.",
+                    mat: "المواد الأولية", list: ["حرير طبيعي", "خيوط الصقلي", "أحجار كريمة"], 
+                    vStop: "إيقاف الفيديو", vPlay: "تشغيل الفيديو" 
+                },
+                fr: { 
+                    home: "Accueil", cat: "Collection", about: "La Maison", 
+                    h1: "Bienvenue à Maison Janati", pHome: "L'excellence du caftan marocain et l'alliance du patrimoine.",
+                    h1c: "Collection", pCat: "Découvrez nos dernières créations royales exclusives.",
+                    h1a: "La Maison", pAbout: "Un voyage de passion et de maîtrise dans la haute couture.",
+                    mat: "Matières Premières", list: ["Soie naturelle", "Fils Skalli", "Pierres précieuses"], 
+                    vStop: "Arrêter la vidéo", vPlay: "Lire la vidéo" 
+                },
+                en: { 
+                    home: "Home", cat: "Collection", about: "The House", 
+                    h1: "Welcome to Maison Janati", pHome: "The splendor of Moroccan caftan where heritage meets creativity.",
+                    h1c: "Collection", pCat: "Explore our latest exclusive royal designs.",
+                    h1a: "The House", pAbout: "A journey of passion and craftsmanship in traditional fashion.",
+                    mat: "Raw Materials", list: ["Natural Silk", "Skalli Threads", "Gemstones"], 
+                    vStop: "Stop video", vPlay: "Play video" 
+                }
             };
 
             let currentLang = 'ar';
@@ -94,12 +131,20 @@
             function setLang(lang) {
                 currentLang = lang;
                 const t = content[lang];
+                
                 document.getElementById('btn-home').innerText = t.home;
                 document.getElementById('btn-catalog').innerText = t.cat;
                 document.getElementById('btn-about').innerText = t.about;
+                
                 document.getElementById('h1-title').innerText = t.h1;
+                document.getElementById('p-home-desc').innerText = t.pHome;
+                
                 document.getElementById('h1-cat').innerText = t.h1c;
+                document.getElementById('p-cat-desc').innerText = t.pCat;
+                
                 document.getElementById('h1-about').innerText = t.h1a;
+                document.getElementById('p-about-desc').innerText = t.pAbout;
+                
                 document.getElementById('h2-mat').innerText = t.mat;
                 
                 const videoEl = document.getElementById('video-bg');
@@ -107,11 +152,15 @@
                 vBtn.innerText = videoEl.paused ? t.vPlay : t.vStop;
 
                 document.getElementById('ul-mat').innerHTML = t.list.map(i => <li>${i}</li>).join('');
+                
                 document.documentElement.dir = (lang === 'ar' ? 'rtl' : 'ltr');
                 document.documentElement.lang = lang;
+
+                document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+                document.getElementById('lang-' + lang).classList.add('active');
             }
 
-            // ربط أزرار التنقل
+            // ربط أزرار التنقل بشكل مباشر وآمن
             document.getElementById('btn-home').onclick = () => switchPage('home');
             document.getElementById('btn-catalog').onclick = () => switchPage('catalog');
             document.getElementById('btn-about').onclick = () => switchPage('about');
@@ -121,7 +170,7 @@
             document.getElementById('lang-fr').onclick = () => setLang('fr');
             document.getElementById('lang-en').onclick = () => setLang('en');
 
-            // التحكم في الفيديو
+            // تحكم الفيديو
             const video = document.getElementById('video-bg');
             const vBtn = document.getElementById('video-control');
             vBtn.onclick = () => {
@@ -135,7 +184,6 @@
                 }
             };
 
-            // التشغيل الافتراضي
             setLang('ar');
         });
     </script>
