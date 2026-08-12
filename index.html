@@ -7,7 +7,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Arial', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
         
-        /* الفيديو في الخلفية مع تعطيل تام لأي تفاعل بالماوس لكي لا يحجب الأزرار */
+        /* الفيديو في الخلفية */
         #video-bg { 
             position: fixed; 
             top: 0; 
@@ -19,7 +19,7 @@
             pointer-events: none; 
         }
         
-        /* زر التحكم في الفيديو في طبقة آمنة */
+        /* زر التحكم في الفيديو */
         #video-control { 
             position: fixed; 
             bottom: 20px; 
@@ -34,7 +34,7 @@
             font-weight: bold; 
         }
 
-        /* الهيدر والأزرار في أعلى طبقة تفاعلية مطلقة */
+        /* الهيدر والأزرار */
         nav { 
             position: fixed; 
             top: 0; 
@@ -50,7 +50,7 @@
         .logo { color: #d4af37; font-weight: bold; font-size: 1.3rem; }
         
         .nav-links { display: flex; gap: 15px; list-style: none; }
-        .nav-links button, .nav-links a { 
+        .nav-links button { 
             cursor: pointer; 
             color: #d4af37; 
             text-decoration: none; 
@@ -62,8 +62,7 @@
             font-size: 1rem;
             transition: 0.3s;
         }
-        .nav-links button:hover, .nav-links button.active,
-        .nav-links a:hover, .nav-links a.active { 
+        .nav-links button:hover, .nav-links button.active { 
             background: #d4af37; 
             color: #000; 
         }
@@ -85,7 +84,7 @@
             color: #000; 
         }
 
-        /* الصفحات في طبقة فوق الفيديو وتستقبل الضغط بوضوح */
+        /* الصفحات */
         .page { 
             display: none; 
             min-height: 100vh; 
@@ -115,24 +114,23 @@
 </head>
 <body>
 
-    <!-- الفيديو بالاسم الصحيح والمحمي ضد اعتراض النقرات -->
     <video id="video-bg" autoplay muted loop playsinline>
         <source src="janati-bg.mp4" type="video/mp4">
     </video>
 
-    <button id="video-control">إيقاف الفيديو</button>
+    <button id="video-control" onclick="toggleVideo()">إيقاف الفيديو</button>
 
     <nav>
         <div class="logo">Maison Janati</div>
         <ul class="nav-links">
-            <li><button id="btn-home" class="active">الرئيسية</button></li>
-            <li><button id="btn-catalog">التشكيلة</button></li>
-            <li><button id="btn-about">عن الدار</button></li>
+            <li><button id="btn-home" class="active" onclick="switchPage('home')">الرئيسية</button></li>
+            <li><button id="btn-catalog" onclick="switchPage('catalog')">التشكيلة</button></li>
+            <li><button id="btn-about" onclick="switchPage('about')">عن الدار</button></li>
         </ul>
         <div class="lang-switch">
-            <button id="lang-ar" class="active">AR</button>
-            <button id="lang-fr">FR</button>
-            <button id="lang-en">EN</button>
+            <button id="lang-ar" class="active" onclick="setLang('ar')">AR</button>
+            <button id="lang-fr" onclick="setLang('fr')">FR</button>
+            <button id="lang-en" onclick="setLang('en')">EN</button>
         </div>
     </nav>
 
@@ -235,19 +233,9 @@
             document.getElementById('lang-' + lang).classList.add('active');
         }
 
-        // تفعيل الأزرار بطريقة مباشرة ومضمونة عبر عناصر button وتجنب أي تعارض
-        document.getElementById('btn-home').onclick = function() { switchPage('home'); };
-        document.getElementById('btn-catalog').onclick = function() { switchPage('catalog'); };
-        document.getElementById('btn-about').onclick = function() { switchPage('about'); };
-        
-        document.getElementById('lang-ar').onclick = function() { setLang('ar'); };
-        document.getElementById('lang-fr').onclick = function() { setLang('fr'); };
-        document.getElementById('lang-en').onclick = function() { setLang('en'); };
-
-        // زر التحكم في الفيديو
-        const video = document.getElementById('video-bg');
-        const vBtn = document.getElementById('video-control');
-        vBtn.onclick = function() {
+        function toggleVideo() {
+            const video = document.getElementById('video-bg');
+            const vBtn = document.getElementById('video-control');
             const t = content[currentLang];
             if (video.paused) { 
                 video.play(); 
@@ -256,9 +244,9 @@
                 video.pause(); 
                 vBtn.innerText = t.vPlay; 
             }
-        };
+        }
 
-        // البدء باللغة العربية
+        // تعيين اللغات عند التحميل
         setLang('ar');
     </script>
 </body>
