@@ -2,106 +2,224 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>MAISON JENNATI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAISON JENNATI | ميزون جناتي</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --gold: #c5a059; --royal-blue: #1b3022; --cream: #f9f7f2; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
-        body { background-color: var(--cream); }
-        .lang-bar { background: #333; padding: 10px; text-align: center; color: white; }
-        .lang-bar button { background: none; border: 1px solid white; color: white; padding: 5px 10px; cursor: pointer; margin: 0 5px; }
+        body { background-color: var(--cream); color: #333; }
+        
+        /* شريط اللغات العلوي */
+        .lang-bar { background: #1a1a1a; padding: 12px; text-align: center; }
+        .lang-bar button { background: transparent; border: 1px solid var(--gold); color: white; padding: 5px 15px; cursor: pointer; margin: 0 5px; border-radius: 4px; font-weight: bold; transition: 0.3s; }
+        .lang-bar button:hover { background: var(--gold); color: #1a1a1a; }
+        
         header { padding: 30px; background: white; text-align: center; border-bottom: 2px solid var(--gold); }
-        .hero { height: 60vh; overflow: hidden; }
+        header h1 { font-family: 'Amiri', serif; color: var(--royal-blue); font-size: 32px; letter-spacing: 2px; }
+
+        /* فيديو المقدمة */
+        .hero { height: 65vh; width: 100%; overflow: hidden; }
         .hero video { width: 100%; height: 100%; object-fit: cover; }
         
-        .materials { padding: 50px 5%; text-align: center; background: white; }
-        .mat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
-        .mat-item { padding: 20px; border: 1px solid #e0dcd0; border-radius: 10px; }
+        /* قسم المصممة والمواد الخام */
+        .materials { padding: 60px 5%; text-align: center; background: white; }
+        .materials h2 { font-family: 'Amiri', serif; color: var(--royal-blue); font-size: 28px; margin-bottom: 40px; }
+        .mat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+        .mat-item { background: var(--cream); padding: 25px 20px; border: 1px solid #e0dcd0; border-radius: 10px; transition: 0.3s; }
+        .mat-item:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .mat-item i { font-size: 35px; color: var(--gold); margin-bottom: 15px; }
+        .mat-item h3 { font-family: 'Amiri', serif; color: var(--royal-blue); font-size: 20px; margin-bottom: 10px; }
+        .mat-item p { font-size: 14px; color: #666; line-height: 1.6; }
+
+        /* معرض الصور */
+        .section-title { text-align: center; font-family: 'Amiri', serif; color: var(--royal-blue); font-size: 30px; margin: 50px 0 20px 0; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 5% 50px 5%; }
+        .card { background: white; padding: 12px; border-radius: 8px; border: 1px solid #e0dcd0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .card img { width: 100%; height: 450px; object-fit: cover; border-radius: 6px; }
+        .btn { display: block; background: var(--royal-blue); color: var(--gold); padding: 12px; margin-top: 15px; text-decoration: none; font-weight: bold; text-align: center; border: 1px solid var(--gold); border-radius: 4px; transition: 0.3s; }
+        .btn:hover { background: var(--gold); color: white; }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 5%; }
-        .card { background: white; padding: 10px; border-radius: 8px; border: 1px solid #e0dcd0; }
-        .card img { width: 100%; height: 450px; object-fit: cover; border-radius: 5px; }
-        .btn { display: block; background: var(--royal-blue); color: var(--gold); padding: 12px; margin-top: 10px; text-decoration: none; font-weight: bold; text-align: center; border: 1px solid var(--gold); }
-        
-        .reviews { padding: 50px 10%; background: #f0ede6; }
-        .rev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .rev-card { background: white; padding: 20px; border-radius: 8px; border-right: 5px solid var(--gold); font-style: italic; }
-        
-        #admin-panel { display: none; background: #fff3cd; padding: 20px; border: 2px dashed #856404; margin: 20px; }
+        /* آراء الزبناء */
+        .reviews { padding: 60px 10%; background: #f0ede6; }
+        .rev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .rev-card { background: white; padding: 25px; border-radius: 8px; border-right: 5px solid var(--gold); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-style: italic; line-height: 1.8; color: #444; }
     </style>
 </head>
 <body>
 
+    <!-- شريط اللغات -->
     <div class="lang-bar">
         <button onclick="setLang('ar')">العربية</button>
         <button onclick="setLang('fr')">Français</button>
         <button onclick="setLang('en')">English</button>
-        <button onclick="toggleAdmin()" style="border-color:red;">⚙️</button>
     </div>
 
-    <header><h1 id="title">MAISON JENNATI</h1></header>
+    <!-- العنوان الرئيسي -->
+    <header>
+        <h1 id="main-title">MAISON JENNATI</h1>
+    </header>
 
-    <section class="hero"><video autoplay muted loop playsinline><source src="janati-bg.mp4" type="video/mp4"></video></section>
+    <!-- فيديو المقدمة -->
+    <section class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="janati-bg.mp4" type="video/mp4">
+        </video>
+    </section>
 
-    <!-- قسم المواد الخام -->
+    <!-- قسم المصممة والمواد الخام -->
     <section class="materials">
-        <h2 id="m-title">سرّ الجودة: أنامل بشرى والمعلمون</h2>
+        <h2 id="mat-heading">سرّ الجودة: أنامل بشرى والمعلمون</h2>
         <div class="mat-grid">
-            <div class="mat-item"><i class="fas fa-gem"></i><h3>العقيق الحر</h3></div>
-            <div class="mat-item"><i class="fas fa-ring"></i><h3>السقلي الحر</h3></div>
-            <div class="mat-item"><i class="fas fa-feather-alt"></i><h3>أثواب ملكية</h3></div>
-            <div class="mat-item"><i class="fas fa-hands-praying"></i><h3>صناعة المعلم</h3></div>
+            <div class="mat-item">
+                <i class="fas fa-gem"></i>
+                <h3 id="m1-title">العقيق الحر</h3>
+                <p id="m1-desc">أجود أنواع العقيق الأصلي المرصع يدوياً بدقة فائقة.</p>
+            </div>
+            <div class="mat-item">
+                <i class="fas fa-ring"></i>
+                <h3 id="m2-title">السقلي الحر</h3>
+                <p id="m2-desc">خيوط ذهبية وفضية أصلية تضفي فخامة ملكية.</p>
+            </div>
+            <div class="mat-item">
+                <i class="fas fa-feather-alt"></i>
+                <h3 id="m3-title">أثواب ملكية</h3>
+                <p id="m3-desc">حرير وبروكار فاخر مختار بكل عناية لراحة أناقتك.</p>
+            </div>
+            <div class="mat-item">
+                <i class="fas fa-hands-praying"></i>
+                <h3 id="m4-title">صناعة المعلم</h3>
+                <p id="m4-desc">لمسة المصممة بشرى مع كبار الصناع التقليديين.</p>
+            </div>
         </div>
     </section>
 
-    <!-- معرض الصور -->
+    <!-- معرض القفاطين -->
+    <h2 class="section-title" id="gallery-heading">مجموعة القفطان الراقي</h2>
     <section class="grid" id="gallery"></section>
 
-    <!-- آراء الزوار -->
+    <!-- آراء الزبناء -->
     <section class="reviews">
-        <h2 id="r-title" style="text-align:center; margin-bottom:30px;">آراء زبنائنا الأوفياء</h2>
+        <h2 class="section-title" id="rev-heading" style="margin-top:0;">آراء زبنائنا الأوفياء</h2>
         <div class="rev-grid" id="reviews-container"></div>
     </section>
 
     <script>
+        // نصوص اللغات الثلاثة متكاملة لجميع الأقسام
         const translations = {
-            ar: { title: "MAISON JENNATI", mTitle: "سرّ الجودة: أنامل بشرى والمعلمون", rTitle: "آراء زبنائنا الأوفياء", btn: "استفسر عبر الواتساب", revs: ["قفطان في قمة الفخامة، الذوق الرفيع هو عنوان ميزون جناتي.", "خدمة راقية وجودة خيالية، السقلي الحر باين فيه الخدمة د اليد.", "كنحييكم على هاد الإبداع، فعلاً الموديلات كتحمق وكتجي في اللبسة واو.", "شكر خاص للأخت بشرى على حسن التعامل، القفطان جا قد القياس.", "أجمل قفطان لبسته في حياتي، الكل سألني من وين.", "احترافية كبيرة في الخدمة، ميزون جناتي كسبت زبونة دائمة."] },
-            fr: { title: "MAISON JENNATI", mTitle: "Qualité et Artisanat: Bouchra", rTitle: "Avis de nos clients", btn: "Contactez via WhatsApp", revs: ["Un caftan luxueux, le goût raffiné de Bouchra.", "Qualité exceptionnelle, le travail à la main est visible.", "Une création magnifique, je l'adore !", "Service client au top, merci Bouchra.", "Le plus beau caftan que j'ai jamais porté.", "Très professionnel, je recommande vivement."] },
-            en: { title: "MAISON JENNATI", mTitle: "Quality and Craftsmanship", rTitle: "Customer Reviews", btn: "Inquire via WhatsApp", revs: ["Luxurious caftan, Bouchra's exquisite taste.", "High quality, hand-made perfection.", "Stunning creation, absolutely beautiful.", "Excellent customer service, thank you Bouchra.", "The most beautiful caftan I've ever worn.", "Very professional, highly recommended."] }
+            ar: {
+                title: "MAISON JENNATI",
+                matHeading: "سرّ الجودة: أنامل بشرى والمعلمون",
+                m1Title: "العقيق الحر", m1Desc: "أجود أنواع العقيق الأصلي المرصع يدوياً بدقة فائقة.",
+                m2Title: "السقلي الحر", m2Desc: "خيوط ذهبية وفضية أصلية تضفي فخامة ملكية.",
+                m3Title: "أثواب ملكية", m3Desc: "حرير وبروكار فاخر مختار بكل عناية لراحة أناقتك.",
+                m4Title: "صناعة المعلم", m4Desc: "لمسة المصممة بشرى مع كبار الصناع التقليديين.",
+                galleryHeading: "مجموعة القفطان الراقي",
+                revHeading: "آراء زبنائنا الأوفياء",
+                btnText: "استفسر عبر الواتساب",
+                revs: [
+                    "قفطان في قمة الفخامة، الذوق الرفيع واللمسة المغربية الأصيلة هي عنوان ميزون جناتي.",
+                    "خدمة راقية وجودة خيالية، السقلي الحر باين فيه متقون وخدمة اليد الحقيقية.",
+                    "كنحييكم على هاد الإبداع، فعلاً الموديلات كتحمق وكتجي في اللبسة راقية بزاف.",
+                    "شكر خاص للأخت بشرى على حسن التعامل الراقي، القفطان جا قد القياس بالظبط.",
+                    "أجمل قفطان لبسته في حياتي، الكل سألني عن سر هذا البريق والجمال.",
+                    "احترافية كبيرة في الخدمة والتوصيل، ميزون جناتي كسبت زبونة دائمة بفضل إتقانكم."
+                ]
+            },
+            fr: {
+                title: "MAISON JENNATI",
+                matHeading: "Qualité et Artisanat : Bouchra & Maîtres",
+                m1Title: "Agyd / Aqiq Pur", m1Desc: "Les meilleures pierres d'Agate incrustées à la main avec précision.",
+                m2Title: "Sqalli Pur", m2Desc: "Fils dorés et argentés authentiques pour un luxe royal.",
+                m3Title: "Tissus Royaux", m3Desc: "Soie et brocart de luxe choisis avec le plus grand soin.",
+                m4Title: "Artisanat du Maâlem", m4Desc: "La touche de la créatrice Bouchra avec les grands maîtres artisans.",
+                galleryHeading: "Collection de Caftans",
+                revHeading: "Avis de nos clients",
+                btnText: "Contactez via WhatsApp",
+                revs: [
+                    "Un caftan au summum du luxe, le goût raffiné de Bouchra est incomparable.",
+                    "Qualité exceptionnelle, le travail fait main est visible et d'une propreté remarquable.",
+                    "Une création magnifique, les modèles sont époustouflants et taillés à la perfection.",
+                    "Un grand merci à Bouchra pour son accueil chaleureux et son professionnalisme.",
+                    "Le plus beau caftan que j'ai jamais porté, tout le monde m'a demandé où je l'ai pris.",
+                    "Très professionnel du début à la fin, Maison Jennati a gagné une cliente fidèle."
+                ]
+            },
+            en: {
+                title: "MAISON JENNATI",
+                matHeading: "Quality & Craftsmanship: Bouchra's Touch",
+                m1Title: "Pure Aqiq", m1Desc: "The finest original gemstones hand-inlaid with ultimate precision.",
+                m2Title: "Pure Sqalli", m2Desc: "Authentic gold and silver threads adding royal luxury.",
+                m3Title: "Royal Fabrics", m3Desc: "Luxurious silk and brocade carefully selected for perfection.",
+                m4Title: "Master Artisan", m4Desc: "Designer Bouchra's touch alongside top traditional masters.",
+                galleryHeading: "Exclusive Caftan Collection",
+                revHeading: "Customer Reviews",
+                btnText: "Inquire via WhatsApp",
+                revs: [
+                    "A luxuriously breathtaking caftan, Bouchra's exquisite taste shines in every detail.",
+                    "Exceptional quality, the hand-made craftsmanship is genuinely pristine.",
+                    "Stunning creations, the designs look magnificent and fit like a dream.",
+                    "Special thanks to designer Bouchra for the wonderful customer service.",
+                    "The most gorgeous caftan I've ever worn, everyone kept asking about it.",
+                    "Incredible professionalism and service, Maison Jennati gained a lifelong customer."
+                ]
+            }
         };
 
         function setLang(lang) {
             document.documentElement.lang = lang;
             document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-            document.getElementById('title').innerText = translations[lang].title;
-            document.getElementById('m-title').innerText = translations[lang].mTitle;
-            document.getElementById('r-title').innerText = translations[lang].rTitle;
-            document.querySelectorAll('.btn').forEach(b => b.innerText = translations[lang].btn);
             
-            // تحديث الآراء
+            // النصوص الثابتة
+            document.getElementById('main-title').innerText = translations[lang].title;
+            document.getElementById('mat-heading').innerText = translations[lang].matHeading;
+            document.getElementById('m1-title').innerText = translations[lang].m1Title;
+            document.getElementById('m1-desc').innerText = translations[lang].m1Desc;
+            document.getElementById('m2-title').innerText = translations[lang].m2Title;
+            document.getElementById('m2-desc').innerText = translations[lang].m2Desc;
+            document.getElementById('m3-title').innerText = translations[lang].m3Title;
+            document.getElementById('m3-desc').innerText = translations[lang].m3Desc;
+            document.getElementById('m4-title').innerText = translations[lang].m4Title;
+            document.getElementById('m4-desc').innerText = translations[lang].m4Desc;
+            document.getElementById('gallery-heading').innerText = translations[lang].galleryHeading;
+            document.getElementById('rev-heading').innerText = translations[lang].revHeading;
+            
+            // تحديث أزرار الواتساب
+            document.querySelectorAll('.btn').forEach(b => {
+                let idNum = b.getAttribute('data-id');
+                b.innerText = translations[lang].btnText;
+            });
+
+            // تحديث آراء الزبناء باللغة المختارة
             const revContainer = document.getElementById('reviews-container');
             revContainer.innerHTML = "";
-            translations[lang].revs.forEach(r => revContainer.innerHTML += <div class="rev-card">"${r}"</div>);
+            translations[lang].revs.forEach(r => {
+                revContainer.innerHTML += <div class="rev-card">"${r}"</div>;
+            });
         }
 
-        // تحميل الصور (1-21)
+        // تحميل الصور الذكي من 1 إلى 21
         const gallery = document.getElementById('gallery');
         for (let i = 1; i <= 21; i++) {
+            let imgName = caftan${i}.jpg;
             gallery.innerHTML += `
                 <div class="card" id="c${i}" style="display:none;">
-                    <img src="caftan${i}.jpg" onerror="this.parentElement.remove()">
-                    <a href="https://wa.me/212664979332" class="btn">استفسر عبر الواتساب</a>
+                    <img src="${imgName}" alt="Caftan ${i}">
+                    <a href="https://wa.me/212664979332?text=مرحباً ميزون جناتي، مهتم بالقفطان رقم ${i}" class="btn" data-id="${i}">استفسر عبر الواتساب</a>
                 </div>
             `;
-            let img = new Image();
-            img.src = caftan${i}.jpg;
-            img.onload = function() { document.getElementById('c'+i).style.display = 'block'; };
+            
+            // التحقق من وجود الصورة فعلياً لكي لا تظهر أي علامة خطأ
+            let imgCheck = new Image();
+            imgCheck.src = imgName;
+            imgCheck.onload = function() {
+                document.getElementById('c' + i).style.display = 'block';
+            };
         }
 
-        // تشغيل الآراء الافتراضية
+        // التشغيل التلقائي باللغة العربية عند فتح الصفحة
         setLang('ar');
-        function toggleAdmin() { alert("لوحة تحكم المدير: يمكنك إضافتها مستقبلاً بربطها بـ Google Sheets."); }
     </script>
 </body>
 </html>
