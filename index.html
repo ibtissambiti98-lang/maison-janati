@@ -2,79 +2,83 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>MAISON JENNATI | ميزون جناتي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>MAISON JENNATI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #c5a059; --royal-blue: #1b3022; --cream: #f9f7f2; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
         body { background-color: var(--cream); }
-        header { padding: 30px; background: white; text-align: center; border-bottom: 2px solid var(--gold); }
+        .lang-bar { background: #333; padding: 8px; text-align: center; }
+        .lang-bar button { background: none; border: 1px solid white; color: white; padding: 3px 10px; cursor: pointer; }
+        header { padding: 25px; background: white; text-align: center; border-bottom: 2px solid var(--gold); }
         .hero { height: 60vh; overflow: hidden; }
         .hero video { width: 100%; height: 100%; object-fit: cover; }
-        
-        .materials { padding: 50px 5%; text-align: center; }
-        .mat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-        .mat-item { background: white; padding: 15px; border: 1px solid #e0dcd0; border-radius: 10px; transition: 0.3s; }
-        .mat-item:hover { border-color: var(--gold); }
-        .mat-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 5px; margin-bottom: 15px; }
-        
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 5%; }
-        .card img { width: 100%; height: 450px; object-fit: cover; border-radius: 5px; border: 1px solid #ddd; }
-        .btn { display: block; background: var(--royal-blue); color: var(--gold); padding: 12px; margin-top: 10px; text-decoration: none; font-weight: bold; text-align: center; border: 1px solid var(--gold); }
-        
-        .reviews { padding: 50px 10%; background: #f0ede6; }
-        .rev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .rev-card { background: white; padding: 25px; border-radius: 8px; border-right: 5px solid var(--gold); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-style: italic; }
+        .card { background: white; padding: 10px; border-radius: 8px; }
+        .card img { width: 100%; height: 450px; object-fit: cover; }
+        .btn { display: block; background: var(--royal-blue); color: var(--gold); padding: 12px; margin-top: 10px; text-align: center; text-decoration: none; border: 1px solid var(--gold); }
+        /* لوحة التحكم السرية */
+        #admin-panel { display: none; background: #fff3cd; padding: 20px; border: 2px dashed #856404; margin: 20px; }
     </style>
 </head>
 <body>
 
-    <header><h1>MAISON JENNATI</h1></header>
+    <div class="lang-bar">
+        <button onclick="setLang('ar')">العربية</button>
+        <button onclick="setLang('fr')">Français</button>
+        <button onclick="setLang('en')">English</button>
+        <button onclick="toggleAdmin()" style="margin-right:20px; border-color:red;">⚙️</button>
+    </div>
 
-    <section class="hero">
-        <video autoplay muted loop playsinline><source src="janati-bg.mp4" type="video/mp4"></video>
-    </section>
+    <header><h1 id="title">MAISON JENNATI</h1></header>
 
-    <!-- المواد الخام المختارة بدقة -->
-    <section class="materials">
-        <h2 style="color:var(--royal-blue); margin-bottom:30px;">سرّ الجودة: أنامل بشرى والمعلمون</h2>
-        <div class="mat-grid">
-            <div class="mat-item"><img src="https://images.unsplash.com/photo-1599643478518-a854e5da4700?auto=format&fit=crop&w=500&q=80" alt="عقيق"><h3>العقيق الحر</h3><p>أجود أنواع العقيق المرصع يدوياً بلمسة دقيقة.</p></div>
-            <div class="mat-item"><img src="https://images.unsplash.com/photo-1591994843333-88220054238e?auto=format&fit=crop&w=500&q=80" alt="سقلي"><h3>السقلي الحر</h3><p>خيوط ذهبية وفضية تضفي فخامة لا تضاهى.</p></div>
-            <div class="mat-item"><img src="https://images.unsplash.com/photo-1558980664-28267794326f?auto=format&fit=crop&w=500&q=80" alt="حرير"><h3>أثواب ملكية</h3><p>حرير طبيعي وبروكار مختار بكل عناية.</p></div>
-            <div class="mat-item"><img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&w=500&q=80" alt="حرفة"><h3>صناعة المعلم</h3><p>أنامل احترافية تبدع في أدق تفاصيل التراث.</p></div>
-        </div>
+    <section class="hero"><video autoplay muted loop playsinline><source src="janati-bg.mp4" type="video/mp4"></video></section>
+
+    <!-- لوحة التحكم السرية (تظهر فقط بالضغط على زر الإعدادات) -->
+    <section id="admin-panel">
+        <h3>لوحة تحكم المدير</h3>
+        <p>إضافة صورة (رابط الصورة):</p>
+        <input type="text" id="newImg" placeholder="caftan22.jpg">
+        <button onclick="addImage()">إضافة صورة</button>
     </section>
 
     <section class="grid" id="gallery"></section>
 
-    <section class="reviews">
-        <h2 style="text-align:center; margin-bottom:30px;">آراء زبنائنا الأوفياء</h2>
-        <div class="rev-grid" id="reviews-container"></div>
-    </section>
-
     <script>
+        const translations = {
+            ar: { title: "ميزون جناتي", btn: "استفسر عبر الواتساب" },
+            fr: { title: "MAISON JENNATI", btn: "Contactez via WhatsApp" },
+            en: { title: "MAISON JENNATI", btn: "Inquire via WhatsApp" }
+        };
+
+        function setLang(lang) {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.getElementById('title').innerText = translations[lang].title;
+            document.querySelectorAll('.btn').forEach(b => b.innerText = translations[lang].btn);
+        }
+
+        function toggleAdmin() {
+            let panel = document.getElementById('admin-panel');
+            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function addImage() {
+            let img = document.getElementById('newImg').value;
+            let gallery = document.getElementById('gallery');
+            gallery.innerHTML += <div class="card"><img src="${img}"><a href="#" class="btn">استفسر</a></div>;
+        }
+
+        // تحميل الصور الافتراضية
         const gallery = document.getElementById('gallery');
         for (let i = 1; i <= 21; i++) {
             gallery.innerHTML += `
-                <div class="card">
-                    <img src="caftan${i}.jpg" onerror="this.style.display='none'">
-                    <a href="https://wa.me/212664979332?text=أهلاً ميزون جناتي، مهتم بالقفطان رقم ${i}" class="btn">استفسر عبر الواتساب</a>
+                <div class="card" id="c${i}">
+                    <img src="caftan${i}.jpg" onerror="document.getElementById('c${i}').remove()">
+                    <a href="https://wa.me/212664979332" class="btn">استفسر عبر الواتساب</a>
                 </div>
             `;
         }
-
-        const reviews = [
-            "قفطان في قمة الفخامة، الذوق الرفيع هو عنوان ميزون جناتي.",
-            "خدمة راقية وجودة خيالية، السقلي الحر باين فيه الخدمة د اليد.",
-            "كنحييكم على هاد الإبداع، فعلاً الموديلات كتحمق وكتجي في اللبسة واو.",
-            "شكر خاص للأخت بشرى على حسن التعامل، القفطان جا قد القياس بالظبط.",
-            "أجمل قفطان لبسته في حياتي، الكل سألني من وين خديته.",
-            "احترافية كبيرة في الخدمة وتوصيل سريع، ميزون جناتي كسبت زبونة دائمة."
-        ];
-        const revContainer = document.getElementById('reviews-container');
-        reviews.forEach(r => revContainer.innerHTML += <div class="rev-card">"${r}"</div>);
     </script>
 </body>
 </html>
