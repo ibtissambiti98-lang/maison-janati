@@ -2,71 +2,81 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ميزون جناتي | Maison Jennati</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --gold: #c5a059;       /* ذهبي ملكي */
-            --royal-blue: #1b3022; /* أخضر غامق ملكي أو أزرق تراثي */
-            --cream: #f9f7f2;      /* خلفية كريمية */
-            --text: #333;
-        }
+        :root { --gold: #c5a059; --royal-blue: #1b3022; --cream: #f9f7f2; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--cream); color: var(--text); font-family: 'Amiri', serif; }
+        body { background-color: var(--cream); font-family: 'Tajawal', sans-serif; color: #333; }
         
-        /* ترويسة الموقع */
-        header { background: #fff; padding: 20px; text-align: center; border-bottom: 3px solid var(--gold); }
-        .logo { font-size: 32px; color: var(--royal-blue); letter-spacing: 2px; }
+        header { background: #fff; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); }
+        .logo { font-family: 'Amiri', serif; font-size: 28px; color: var(--royal-blue); font-weight: bold; }
         
-        /* القسم الترحيبي */
-        .hero { height: 70vh; position: relative; border-bottom: 5px solid var(--gold); }
-        .hero video { width: 100%; height: 100%; object-fit: cover; }
+        .hero { height: 70vh; width: 100%; overflow: hidden; border-bottom: 5px solid var(--gold); }
+        video { width: 100%; height: 100%; object-fit: cover; }
         
-        /* الشبكة والبطاقات */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; padding: 60px 10%; }
-        .card { background: white; padding: 10px; border: 1px solid #ddd; transition: 0.4s; }
-        .card:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 450px; object-fit: cover; border: 1px solid var(--gold); }
+        .section-padding { padding: 60px 10%; }
+        .about-box { background: white; padding: 40px; border-radius: 15px; display: flex; align-items: center; gap: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .designer-img { width: 180px; height: 180px; border-radius: 50%; border: 3px solid var(--gold); }
         
-        /* الأزرار */
-        .btn { display: block; background: var(--royal-blue); color: var(--gold); padding: 15px; text-align: center; text-decoration: none; font-weight: bold; text-transform: uppercase; border: 1px solid var(--gold); }
-        .btn:hover { background: var(--gold); color: white; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; padding: 40px 5%; }
+        .card { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: 0.3s; }
+        .card img { width: 100%; height: 420px; object-fit: cover; border-radius: 5px; }
         
-        /* زر واتساب العائم */
-        .float-wa { position: fixed; bottom: 30px; left: 30px; background: var(--gold); color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .whatsapp-btn { display: block; background: var(--royal-blue); color: var(--gold); padding: 12px; text-align: center; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: 15px; }
+        .float-wa { position: fixed; bottom: 30px; left: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 999; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">MAISON JENNATI</div>
-        <select id="lang" onchange="updateLang()" style="margin-top:10px;">
-            <option value="ar">العربية</option>
-            <option value="fr">Français</option>
-            <option value="en">English</option>
+        <select id="lang" onchange="updateLang()" style="padding:5px;">
+            <option value="ar">العربية</option><option value="fr">Français</option><option value="en">English</option>
         </select>
     </header>
 
     <section class="hero">
-        <video autoplay muted loop playsinline><source src="Janati-bg.mp4" type="video/mp4"></video>
+        <video autoplay muted loop playsinline preload="auto" poster="Caftan1.jpg">
+            <source src="Janati-bg.mp4" type="video/mp4">
+        </video>
+    </section>
+
+    <section class="section-padding">
+        <div class="about-box">
+            <img src="bouchra_photo.jpg" alt="المصممة" class="designer-img" onerror="this.src='https://via.placeholder.com/180'">
+            <div>
+                <h2 id="title" style="color:var(--royal-blue); margin-bottom:10px;">لمسة ميزون جناتي الفنية</h2>
+                <p id="desc" style="line-height:1.8;">تسهر مصممة الدار على ابتكار قطع تجمع بين عراقة الطرز الرباطي وفخامة الأثواب المغربية، بتعاون وثيق مع أمهر المعلمين التقليديين لضمان جودة استثنائية.</p>
+            </div>
+        </div>
     </section>
 
     <section class="grid" id="gallery"></section>
 
-    <a href="https://wa.me/212664979332" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/212664979332" class="float-wa"><i class="fab fa-whatsapp"></i></a>
 
     <script>
-        const content = {
-            ar: { desc: "قفطان ميزون جناتي: مزيج بين الأصالة واللمسة الفنية المعاصرة.", btn: "احصل عليه الآن" },
-            fr: { desc: "Caftan Maison Jennati: L'alliance de l'authenticité et du raffinement moderne.", btn: "Commander maintenant" },
-            en: { desc: "Maison Jennati Caftan: A fusion of tradition and contemporary artistry.", btn: "Order now" }
-        };
+        const descriptions = [
+            "قفطان من البروكار الملكي، مطرز بالصم الحر بخدمة اليد.",
+            "إبداع حريري مرصع بعقيق الزمرد، يجسد أناقة التراث المغربي.",
+            "مخمل فاخر بتطريز دقيق، يجمع بين الأصالة والحداثة.",
+            "قفطان بتصميم ساحر يبرز دقة الطرز الفاسي التقليدي.",
+            "جوهرة من الحرير، مزينة بالسفيفة العريقة واللمسات اليدوية."
+        ];
 
         function updateLang() {
             const lang = document.getElementById('lang').value;
-            document.querySelectorAll('.prod-desc').forEach(d => d.innerText = content[lang].desc);
-            document.querySelectorAll('.btn-text').forEach(b => b.innerText = content[lang].btn);
+            const content = {
+                ar: { t: "لمسة ميزون جناتي الفنية", d: "تسهر مصممة الدار على ابتكار قطع تجمع بين عراقة الطرز الرباطي وفخامة الأثواب المغربية.", b: "استفسر عبر الواتساب" },
+                fr: { t: "La Touche Artisanale de Maison Jennati", d: "La créatrice veille à concevoir des pièces alliant la broderie traditionnelle et le luxe des tissus marocains.", b: "Commander via WhatsApp" },
+                en: { t: "The Artistry of Maison Jennati", d: "The designer crafts pieces that blend traditional embroidery with the luxury of fine Moroccan fabrics.", b: "Inquire via WhatsApp" }
+            };
+            document.getElementById('title').innerText = content[lang].t;
+            document.getElementById('desc').innerText = content[lang].d;
+            document.querySelectorAll('.whatsapp-btn').forEach(b => b.innerText = content[lang].b);
         }
 
         const gallery = document.getElementById('gallery');
@@ -74,12 +84,9 @@
             gallery.innerHTML += `
                 <div class="card">
                     <img src="Caftan${i}.jpg" onerror="this.src='caftan${i}.jpg'">
-                    <div style="padding:20px; text-align:center;">
-                        <h3 style="color:var(--royal-blue); margin-bottom:10px;">Collection N°${i}</h3>
-                        <p class="prod-desc" style="margin-bottom:15px; font-size:14px;">${content.ar.desc}</p>
-                        <a href="https://wa.me/212664979332?text=أريد الاستفسار عن القفطان رقم ${i}" class="btn">
-                            <span class="btn-text">${content.ar.btn}</span>
-                        </a>
+                    <div style="padding:15px; text-align:center;">
+                        <p style="font-size:14px; color:#555;">${descriptions[(i-1)%descriptions.length]}</p>
+                        <a href="https://wa.me/212664979332?text=مهتم بالقفطان رقم ${i}" class="whatsapp-btn">استفسر عبر الواتساب</a>
                     </div>
                 </div>
             `;
