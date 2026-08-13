@@ -3,21 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>MAISON JENNATI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --gold: #c5a059; --royal-blue: #1b3022; --cream: #f9f7f2; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
         body { background-color: var(--cream); }
-        .lang-bar { background: #333; padding: 8px; text-align: center; }
-        .lang-bar button { background: none; border: 1px solid white; color: white; padding: 3px 10px; cursor: pointer; }
-        header { padding: 25px; background: white; text-align: center; border-bottom: 2px solid var(--gold); }
+        .lang-bar { background: #333; padding: 10px; text-align: center; color: white; }
+        .lang-bar button { background: none; border: 1px solid white; color: white; padding: 5px 10px; cursor: pointer; margin: 0 5px; }
+        header { padding: 30px; background: white; text-align: center; border-bottom: 2px solid var(--gold); }
         .hero { height: 60vh; overflow: hidden; }
         .hero video { width: 100%; height: 100%; object-fit: cover; }
+        
+        .materials { padding: 50px 5%; text-align: center; background: white; }
+        .mat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
+        .mat-item { padding: 20px; border: 1px solid #e0dcd0; border-radius: 10px; }
+        
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 5%; }
-        .card { background: white; padding: 10px; border-radius: 8px; }
-        .card img { width: 100%; height: 450px; object-fit: cover; }
-        .btn { display: block; background: var(--royal-blue); color: var(--gold); padding: 12px; margin-top: 10px; text-align: center; text-decoration: none; border: 1px solid var(--gold); }
-        /* لوحة التحكم السرية */
+        .card { background: white; padding: 10px; border-radius: 8px; border: 1px solid #e0dcd0; }
+        .card img { width: 100%; height: 450px; object-fit: cover; border-radius: 5px; }
+        .btn { display: block; background: var(--royal-blue); color: var(--gold); padding: 12px; margin-top: 10px; text-decoration: none; font-weight: bold; text-align: center; border: 1px solid var(--gold); }
+        
+        .reviews { padding: 50px 10%; background: #f0ede6; }
+        .rev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .rev-card { background: white; padding: 20px; border-radius: 8px; border-right: 5px solid var(--gold); font-style: italic; }
+        
         #admin-panel { display: none; background: #fff3cd; padding: 20px; border: 2px dashed #856404; margin: 20px; }
     </style>
 </head>
@@ -27,58 +37,71 @@
         <button onclick="setLang('ar')">العربية</button>
         <button onclick="setLang('fr')">Français</button>
         <button onclick="setLang('en')">English</button>
-        <button onclick="toggleAdmin()" style="margin-right:20px; border-color:red;">⚙️</button>
+        <button onclick="toggleAdmin()" style="border-color:red;">⚙️</button>
     </div>
 
     <header><h1 id="title">MAISON JENNATI</h1></header>
 
     <section class="hero"><video autoplay muted loop playsinline><source src="janati-bg.mp4" type="video/mp4"></video></section>
 
-    <!-- لوحة التحكم السرية (تظهر فقط بالضغط على زر الإعدادات) -->
-    <section id="admin-panel">
-        <h3>لوحة تحكم المدير</h3>
-        <p>إضافة صورة (رابط الصورة):</p>
-        <input type="text" id="newImg" placeholder="caftan22.jpg">
-        <button onclick="addImage()">إضافة صورة</button>
+    <!-- قسم المواد الخام -->
+    <section class="materials">
+        <h2 id="m-title">سرّ الجودة: أنامل بشرى والمعلمون</h2>
+        <div class="mat-grid">
+            <div class="mat-item"><i class="fas fa-gem"></i><h3>العقيق الحر</h3></div>
+            <div class="mat-item"><i class="fas fa-ring"></i><h3>السقلي الحر</h3></div>
+            <div class="mat-item"><i class="fas fa-feather-alt"></i><h3>أثواب ملكية</h3></div>
+            <div class="mat-item"><i class="fas fa-hands-praying"></i><h3>صناعة المعلم</h3></div>
+        </div>
     </section>
 
+    <!-- معرض الصور -->
     <section class="grid" id="gallery"></section>
+
+    <!-- آراء الزوار -->
+    <section class="reviews">
+        <h2 id="r-title" style="text-align:center; margin-bottom:30px;">آراء زبنائنا الأوفياء</h2>
+        <div class="rev-grid" id="reviews-container"></div>
+    </section>
 
     <script>
         const translations = {
-            ar: { title: "ميزون جناتي", btn: "استفسر عبر الواتساب" },
-            fr: { title: "MAISON JENNATI", btn: "Contactez via WhatsApp" },
-            en: { title: "MAISON JENNATI", btn: "Inquire via WhatsApp" }
+            ar: { title: "MAISON JENNATI", mTitle: "سرّ الجودة: أنامل بشرى والمعلمون", rTitle: "آراء زبنائنا الأوفياء", btn: "استفسر عبر الواتساب", revs: ["قفطان في قمة الفخامة، الذوق الرفيع هو عنوان ميزون جناتي.", "خدمة راقية وجودة خيالية، السقلي الحر باين فيه الخدمة د اليد.", "كنحييكم على هاد الإبداع، فعلاً الموديلات كتحمق وكتجي في اللبسة واو.", "شكر خاص للأخت بشرى على حسن التعامل، القفطان جا قد القياس.", "أجمل قفطان لبسته في حياتي، الكل سألني من وين.", "احترافية كبيرة في الخدمة، ميزون جناتي كسبت زبونة دائمة."] },
+            fr: { title: "MAISON JENNATI", mTitle: "Qualité et Artisanat: Bouchra", rTitle: "Avis de nos clients", btn: "Contactez via WhatsApp", revs: ["Un caftan luxueux, le goût raffiné de Bouchra.", "Qualité exceptionnelle, le travail à la main est visible.", "Une création magnifique, je l'adore !", "Service client au top, merci Bouchra.", "Le plus beau caftan que j'ai jamais porté.", "Très professionnel, je recommande vivement."] },
+            en: { title: "MAISON JENNATI", mTitle: "Quality and Craftsmanship", rTitle: "Customer Reviews", btn: "Inquire via WhatsApp", revs: ["Luxurious caftan, Bouchra's exquisite taste.", "High quality, hand-made perfection.", "Stunning creation, absolutely beautiful.", "Excellent customer service, thank you Bouchra.", "The most beautiful caftan I've ever worn.", "Very professional, highly recommended."] }
         };
 
         function setLang(lang) {
             document.documentElement.lang = lang;
             document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
             document.getElementById('title').innerText = translations[lang].title;
+            document.getElementById('m-title').innerText = translations[lang].mTitle;
+            document.getElementById('r-title').innerText = translations[lang].rTitle;
             document.querySelectorAll('.btn').forEach(b => b.innerText = translations[lang].btn);
+            
+            // تحديث الآراء
+            const revContainer = document.getElementById('reviews-container');
+            revContainer.innerHTML = "";
+            translations[lang].revs.forEach(r => revContainer.innerHTML += <div class="rev-card">"${r}"</div>);
         }
 
-        function toggleAdmin() {
-            let panel = document.getElementById('admin-panel');
-            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-        }
-
-        function addImage() {
-            let img = document.getElementById('newImg').value;
-            let gallery = document.getElementById('gallery');
-            gallery.innerHTML += <div class="card"><img src="${img}"><a href="#" class="btn">استفسر</a></div>;
-        }
-
-        // تحميل الصور الافتراضية
+        // تحميل الصور (1-21)
         const gallery = document.getElementById('gallery');
         for (let i = 1; i <= 21; i++) {
             gallery.innerHTML += `
-                <div class="card" id="c${i}">
-                    <img src="caftan${i}.jpg" onerror="document.getElementById('c${i}').remove()">
+                <div class="card" id="c${i}" style="display:none;">
+                    <img src="caftan${i}.jpg" onerror="this.parentElement.remove()">
                     <a href="https://wa.me/212664979332" class="btn">استفسر عبر الواتساب</a>
                 </div>
             `;
+            let img = new Image();
+            img.src = caftan${i}.jpg;
+            img.onload = function() { document.getElementById('c'+i).style.display = 'block'; };
         }
+
+        // تشغيل الآراء الافتراضية
+        setLang('ar');
+        function toggleAdmin() { alert("لوحة تحكم المدير: يمكنك إضافتها مستقبلاً بربطها بـ Google Sheets."); }
     </script>
 </body>
 </html>
